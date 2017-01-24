@@ -6,7 +6,7 @@
 #    By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/09 17:44:21 by edeveze           #+#    #+#              #
-#    Updated: 2017/01/20 17:22:32 by edeveze          ###   ########.fr        #
+#    Updated: 2017/01/24 22:11:45 by edeveze          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,16 +97,16 @@ CFLAGS += -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
 $(OBJ): %.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $^ -I$(INC)
+	@$(CC) $(CFLAGS) -c -o $@ $^ -I$(INC)
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
