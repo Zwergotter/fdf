@@ -6,7 +6,7 @@
 #    By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/09 17:44:21 by edeveze           #+#    #+#              #
-#    Updated: 2017/01/24 22:11:45 by edeveze          ###   ########.fr        #
+#    Updated: 2017/01/25 15:22:21 by edeveze          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,7 @@ SRC =		ft_atoi.c \
 			ft_swap.c \
 			ft_tolower.c \
 			ft_toupper.c \
+			get_next_line.c\
 
 OBJ = $(SRC:.c=.o)
 
