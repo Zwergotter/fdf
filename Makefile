@@ -6,7 +6,7 @@
 #    By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/24 21:39:34 by edeveze           #+#    #+#              #
-#    Updated: 2017/01/25 21:35:56 by edeveze          ###   ########.fr        #
+#    Updated: 2017/01/26 14:21:51 by edeveze          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ clean :
 
 fclean : clean
 	@rm -rf $(NAME)
-	@make -C libft clean
+	@make -C libft fclean
 	@make -C minilibx clean
 
 re : fclean all
