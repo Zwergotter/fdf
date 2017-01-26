@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 17:27:21 by edeveze           #+#    #+#             */
-/*   Updated: 2017/01/24 21:52:30 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/01/25 19:08:19 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,15 @@
 
 # include <math.h>
 # include "mlx.h"
+# include "libft.h"
+
+typedef struct	s_node
+{
+    int x;
+    int y;
+    int z;
+}				t_node;
+
+void	read_file(int fd);
 
 #endif
