@@ -38,12 +38,17 @@
 # include "mlx.h"
 # include "libft.h"
 
-typedef struct	s_node
+# define WIDTH 400
+# define LENGTH 400
+
+typedef struct	s_env
 {
+    void *mlx;
+    void *win;
     int x;
     int y;
     int z;
-}				t_node;
+}				t_env;
 
 void	read_file(int fd);
 
