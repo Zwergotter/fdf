@@ -6,7 +6,7 @@
 #    By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/24 21:39:34 by edeveze           #+#    #+#              #
-#    Updated: 2017/01/24 22:13:38 by edeveze          ###   ########.fr        #
+#    Updated: 2017/01/25 21:35:56 by edeveze          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ INC = -I includes -I libft/includes -I minilibx/
 
 # Files
 SRC = fdf.c\
+	  parsing.c\
 
 # Objects
 OBJ = $(SRC:.c=.o)
@@ -25,7 +26,7 @@ OBJ = $(SRC:.c=.o)
 # Compilation
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-FRAME = -L libft/ -lft -lmlx -framework OpenGL -framework AppKit
+PRGFLAGS = -L libft/ -lft -lmlx -framework OpenGL -framework AppKit
 
 
 # Rules
@@ -41,10 +42,10 @@ lib:
 	@make -C libft
 
 $(NAME) : $(OBJ)
-	@$(CC) $(CFLAGS) $(FRAME) -o $@ $(OBJ)
+	@$(CC) $(CFLAGS) $(PRGFLAGS) -o $@ $(OBJ)
 
-$(OBJ) : %.o:%.c libft/libft.a minilibx/libmlx.a
-	@$(CC) -c $(CFLAGS) $(INC) $(SRC) -o $@
+%.o: %.c libft/libft.a minilibx/libmlx.a
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean :
 	@rm -rf $(OBJ)
