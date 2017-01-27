@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 17:27:21 by edeveze           #+#    #+#             */
-/*   Updated: 2017/01/25 19:08:19 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/01/26 17:58:00 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,21 @@
 # define WIDTH 400
 # define LENGTH 400
 
-typedef struct	s_env
+typedef struct		s_pos
 {
-    void *mlx;
-    void *win;
-    int x;
-    int y;
-    int z;
-}				t_env;
+    int				x;
+    int				y;
+    int				z;
+}               	t_pos;
 
-void	read_file(int fd);
+typedef struct		s_env
+{
+    void			*mlx;
+    void			*win;
+    int				x;
+    int				y;
+}					t_env;
+
+t_pos	**read_file(int fd);
 
 #endif
