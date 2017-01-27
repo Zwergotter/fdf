@@ -12,23 +12,48 @@
 
 #include "fdf.h"
 
-void	read_file(int fd)
+t_pos   **setting_pos(t_pos **array_pos, char ***array)
+{   
+    int x;
+    int y;
+
+    x = 0;
+    y = 0;
+    while(array[y])
+    {
+        x = 0;
+        while(array[y][x])
+        {
+            (*array_pos)->x = x;
+            (*array_pos)->y = y;
+            (*array_pos)->z = ft_atoi(array[x][y]);
+            x++;
+            array_pos++;
+        }
+        y++;
+    }
+    return (array_pos);
+}
+
+t_pos    **read_file(int fd)
 {
     char *line = NULL;
-    char **tmp;
-    int i;
-
-    while ((i = get_next_line(fd, &line) == 1))
+    char ***tmp;
+    int y;
+    t_pos  **array_pos;
+    
+    y = 0;
+    if (!(tmp = (char***)malloc(sizeof(char))))
+        return (NULL);
+    while (get_next_line(fd, &line) == 1)
     {
-        tmp = ft_strsplit(line, ' ');
-        /*
-        ** we read a line from input file.
-        ** we use strsplit to a have a proper line.
-        ** Need to know position of x, of y and then to know what number is in
-        ** each part of double array temp.
-        ** x = we increase a counter until end of temp. then we reset it.
-        ** y  = we increase it a the end of temp read.
-        ** z = we can know it with atoi (or get_nbr?)
-        */
+        tmp[y++] = ft_strsplit(line, ' ');
+        free(line);
+        line = NULL;
     }
+    if (!(array_pos = (t_pos**)malloc(sizeof(t_pos) * y )))
+        return (NULL);
+    array_pos = setting_pos(array_pos, tmp);
+    free(tmp);
+    return (array_pos);
 }
