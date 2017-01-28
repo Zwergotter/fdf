@@ -57,6 +57,6 @@ typedef struct		s_env
     int				y;
 }					t_env;
 
-char	***read_file(char ***map, int fd, int array_size);
+char	***read_file(char ***map, int fd);
 
 #endif

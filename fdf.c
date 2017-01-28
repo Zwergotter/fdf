@@ -25,7 +25,6 @@ int     map_length(int fd)
     }
     if (buf[0] != '\n')
         i++;
-	printf("map lenght is %d\n", i);
     return (i);
 }
 
@@ -42,12 +41,12 @@ void init_env(t_env *env, char *map)
 	close(fd);
 }
 
-void init_array(char ***array_pos, char **av, int length)
+void init_array(char ***array_pos, char *file)
 {
 		int		fd;
 
-		fd = open(av[1], O_RDONLY);
-		array_pos = read_file(array_pos, fd, length);
+		fd = open(file, O_RDONLY);
+		array_pos = read_file(array_pos, fd);
 		close(fd);
 }
 
@@ -63,7 +62,8 @@ int	main(int ac, char **av)
 		init_env(env, av[1]);
 		if (!(array_pos = (char***)malloc(sizeof(char) * env->len + 1)))
 			return (-1);
-		init_array(array_pos, &av[1], env->len);
+		array_pos[env->len] = NULL;
+		init_array(array_pos, av[1]);
 		while (env->y++ < 150)
 			mlx_pixel_put(env->mlx, env->win, env->x, env->y, 00255000000);
 		mlx_loop(env->mlx);	
