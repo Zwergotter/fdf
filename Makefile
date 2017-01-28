@@ -19,6 +19,7 @@ INC = -I includes -I libft/includes -I minilibx/
 # Files
 SRC = fdf.c\
 	  parsing.c\
+	  drawing.c\
 
 # Objects
 OBJ = $(SRC:.c=.o)

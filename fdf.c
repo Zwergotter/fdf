@@ -54,6 +54,8 @@ int	main(int ac, char **av)
 {
 	t_env *env;
 	char ***array_pos;
+	int first[2] = {213, 200};
+	int second[2] = {10, 200};
 
 	if (ac == 2)
 	{
@@ -64,8 +66,7 @@ int	main(int ac, char **av)
 			return (-1);
 		array_pos[env->len] = NULL;
 		init_array(array_pos, av[1]);
-		while (env->y++ < 150)
-			mlx_pixel_put(env->mlx, env->win, env->x, env->y, 00255000000);
+		draw_line(first, second, env);
 		mlx_loop(env->mlx);	
 	}
 	return (0);

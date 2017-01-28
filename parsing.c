@@ -20,7 +20,7 @@ char    ***read_file(char ***map, int fd)
     int actual_len;
     int split_len;
     
-    i = 0;
+    i = -1;
     actual_len = 0;
     while ((get_next_line(fd, &line)) == 1)
     {
@@ -31,8 +31,9 @@ char    ***read_file(char ***map, int fd)
         if ((actual_len && split_len != actual_len) || split_len == 0)
             return (NULL);
         actual_len = split_len;
-        map[i++] = temp;
+        map[++i] = temp;
         free(line);
     }
+    free(line);
     return (map);
 }
