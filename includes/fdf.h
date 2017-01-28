@@ -41,21 +41,22 @@
 # define WIDTH 400
 # define LENGTH 400
 
-typedef struct		s_pos
+/*typedef struct		s_pos
 {
     int				x;
     int				y;
     int				z;
 }               	t_pos;
-
+*/
 typedef struct		s_env
 {
     void			*mlx;
     void			*win;
+    int             len;
     int				x;
     int				y;
 }					t_env;
 
-t_pos	**read_file(int fd);
+char	***read_file(char ***map, int fd, int array_size);
 
 #endif
