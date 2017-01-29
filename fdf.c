@@ -54,8 +54,6 @@ int	main(int ac, char **av)
 {
 	t_env *env;
 	char ***array_pos;
-	int first[2] = {213, 200};
-	int second[2] = {10, 200};
 
 	if (ac == 2)
 	{
@@ -66,7 +64,7 @@ int	main(int ac, char **av)
 			return (-1);
 		array_pos[env->len] = NULL;
 		init_array(array_pos, av[1]);
-		draw_line(first, second, env);
+		draw_map(array_pos, env);
 		mlx_loop(env->mlx);	
 	}
 	return (0);

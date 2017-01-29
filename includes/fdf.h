@@ -58,6 +58,6 @@ typedef struct		s_env
 }					t_env;
 
 char	***read_file(char ***map, int fd);
-void    draw_line(int *first, int *second, t_env *env);
+void    draw_map(char ***array_pos, t_env *env);
 
 #endif
