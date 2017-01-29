@@ -49,7 +49,6 @@ void draw_map(char ***array_pos, t_env *env)
     if ((!(one = (int*)malloc(sizeof(int) * 2))) || (!(two = (int*)malloc(sizeof(int) * 2))))
         exit (-1);
     y = -1;
-    printf("before starting draw_map function\n");
     while (array_pos[++y])
     {
         x = -1;
@@ -61,7 +60,7 @@ void draw_map(char ***array_pos, t_env *env)
             one[0] = x;
             one[1] = y - ft_atoi(array_pos[y][x]);
             printf("one values %d, %d \n", one[0], one[1]);
-            if (array_pos[y][x + 1])
+            if (array_pos[y][x + 1] != '\0')
             {
                 printf("\x1b[31mif1 exists\n\x1b[0m");
                 two[0] = x + 1;
@@ -69,7 +68,7 @@ void draw_map(char ***array_pos, t_env *env)
                 printf("\x1b[31mtwo values next x: %d; %d; %d \n\x1b[0m", two[0], two[1], ft_atoi(array_pos[y][x + 1]));
                 draw_line(one, two, env);
             }
-            if (array_pos[y + 1][x])
+            if (y + 1 < env->len)
             {
                 printf("\x1b[32mif2 exists\n\x1b[0m");
                 two[0] = x;

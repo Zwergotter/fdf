@@ -50,21 +50,23 @@ void init_array(char ***array_pos, char *file)
 		close(fd);
 }
 
-void	print_map(char ***array_pos)
+void	print_map(char ***array_pos) ////////////////////////////////////////////////////////////////// TO DELETE
 {
 	int i;
 	int j;
 
 	i = -1;
+	printf("\x1b[35mPrinting parsing\n\x1b[0m");
 	while (array_pos[++i])
 	{
 		j = -1;
 		while(array_pos[i][++j])
 		{
-			printf("%s ", array_pos[i][j]);
+			printf("\x1b[35m%s \x1b[0m", array_pos[i][j]);
 		}
 		printf("\n");
 	}
+	printf("\x1b[35mParsing done\n\x1b[0m");
 }
 
 int	main(int ac, char **av)
@@ -82,8 +84,9 @@ int	main(int ac, char **av)
 		array_pos[env->len] = NULL;
 		init_array(array_pos, av[1]);
 		print_map(array_pos);
-		/*draw_map(array_pos, env);
-		mlx_loop(env->mlx);*/
+		printf("length map is %d\n", env->len);
+		draw_map(array_pos, env);
+		mlx_loop(env->mlx);
 	}
 	return (0);
 }
