@@ -50,6 +50,23 @@ void init_array(char ***array_pos, char *file)
 		close(fd);
 }
 
+void	print_map(char ***array_pos)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (array_pos[++i])
+	{
+		j = -1;
+		while(array_pos[i][++j])
+		{
+			printf("%s ", array_pos[i][j]);
+		}
+		printf("\n");
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_env *env;
@@ -64,8 +81,9 @@ int	main(int ac, char **av)
 			return (-1);
 		array_pos[env->len] = NULL;
 		init_array(array_pos, av[1]);
-		draw_map(array_pos, env);
-		mlx_loop(env->mlx);	
+		print_map(array_pos);
+		/*draw_map(array_pos, env);
+		mlx_loop(env->mlx);*/
 	}
 	return (0);
 }
