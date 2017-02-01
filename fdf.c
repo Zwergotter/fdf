@@ -63,20 +63,20 @@ int	key_pressed(int keycode)
 int	main(int ac, char **av)
 {
 	t_env *env;
+	t_max *coord;
 	char ***array_pos;
-	/*int first[2] = {213, 160};
- 	int second[2] = {10, 300};*/
 
 	if (ac == 2)
 	{
 		if (!(env = (t_env*)malloc(sizeof(t_env))))
 			return (-1);
 		init_env(env, av[1]);
-		if (!(array_pos = (char***)malloc(sizeof(char) * env->len + 1)))
+		if (!(array_pos = (char***)malloc(sizeof(char) * env->len + 1)) || !(coord = (t_max*)malloc(sizeof(t_max))))
 			return (-1);
 		array_pos[env->len] = NULL;
 		init_array(array_pos, av[1]);
-		printf("length map is %d\n", env->len);
+		max_coord(array_pos, coord);
+		printf("higher x, y min_heigth and max_heigth are %d, %d, %d, %d\n", coord->max_x, coord->max_y, coord->min_heigth, coord->max_heigth);
 		/*draw_line(first, second, env);
 		*/draw_map(array_pos, env);
 		mlx_key_hook(env->win, key_pressed, env);

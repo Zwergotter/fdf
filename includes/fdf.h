@@ -59,8 +59,17 @@ typedef struct		s_env
     float           depth;
 }					t_env;
 
+typedef struct      s_max
+{
+    int             max_heigth;
+    int             min_heigth;
+    int             max_x;
+    int             max_y;
+}                   t_max;
+
 char	***read_file(char ***map, int fd);
 void    draw_line(float *one, float *two, t_env *env);
 void    draw_map(char ***array_pos, t_env *env);
+void    max_coord(char ***map, t_max *coord);
 
 #endif
