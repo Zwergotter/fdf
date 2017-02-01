@@ -54,26 +54,18 @@ void draw_map(char ***array_pos, t_env *env)
         x = -1;
         while (array_pos[y][++x])
         {
-           
-            printf("x, y values %d, %d \n", x, y);
-            printf("z value is %d \n", ft_atoi(array_pos[y][x]));
-            one[0] = x * 15;
-            one[1] = (y - (ft_atoi(array_pos[y][x]) * 0.1)) * 15;
-            printf("one values %f, %f \n", one[0], one[1]);
+            one[0] = x * env->zoom;
+            one[1] = (y - (ft_atoi(array_pos[y][x]) * env->depth)) * env->zoom;
             if (array_pos[y][x + 1] != '\0')
             {
-                printf("\x1b[31mif1 exists\n\x1b[0m");
-                two[0] = (x + 1) * 15;
-                two[1] = (y - ft_atoi(array_pos[y][x + 1]) * 0.1) * 15;
-                printf("\x1b[31mtwo values next x: %f; %f; %d \n\x1b[0m", two[0], two[1], ft_atoi(array_pos[y][x + 1]));
+                two[0] = (x + 1) * env->zoom;
+                two[1] = (y - ft_atoi(array_pos[y][x + 1]) * env->depth) * env->zoom;
                 draw_line(one, two, env);
             }
             if (y + 1 < env->len)
             {
-                printf("\x1b[32mif2 exists\n\x1b[0m");
-                two[0] = x * 15;
-                two[1] = (y + 1 - ft_atoi(array_pos[y + 1][x]) * 0.1) * 15;
-                printf("\x1b[32mtwo values next y: %f; %f; %d \n\x1b[0m", two[0], two[1], ft_atoi(array_pos[y + 1][x]));
+                two[0] = x * env->zoom;
+                two[1] = (y + 1 - ft_atoi(array_pos[y + 1][x]) * env->depth) * env->zoom;
                 draw_line(one, two, env);
             }
         }

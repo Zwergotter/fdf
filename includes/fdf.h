@@ -55,6 +55,8 @@ typedef struct		s_env
     int             len;
     int				x;
     int				y;
+    int             zoom;
+    float           depth;
 }					t_env;
 
 char	***read_file(char ***map, int fd);
