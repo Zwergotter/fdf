@@ -34,6 +34,8 @@ char    ***read_file(char ***map, int fd)
         map[++i] = temp;
         free(line);
     }
+    if ((get_next_line(fd, &line) < 0))
+        return (NULL);
     free(line);
     return (map);
 }
