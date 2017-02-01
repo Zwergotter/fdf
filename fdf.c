@@ -73,6 +73,8 @@ int	main(int ac, char **av)
 {
 	t_env *env;
 	char ***array_pos;
+	/*int first[2] = {213, 160};
+ 	int second[2] = {10, 300};*/
 
 	if (ac == 2)
 	{
@@ -85,7 +87,8 @@ int	main(int ac, char **av)
 		init_array(array_pos, av[1]);
 		print_map(array_pos);
 		printf("length map is %d\n", env->len);
-		draw_map(array_pos, env);
+		/*draw_line(first, second, env);
+		*/draw_map(array_pos, env);
 		mlx_loop(env->mlx);
 	}
 	return (0);
