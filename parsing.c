@@ -12,18 +12,18 @@
 
 #include "fdf.h"
 
-void max_coord(char ***map, t_max *coord)
+/*void max_coord(char ***map, t_max *coord)
 {
     int y;
     int x;
 
-    y = 0;
+    y = -1;
     coord->max_heigth = 0;
     coord->min_heigth = 0;
-    while (map[y])
+    while (map[++y])
     {
-        x = 0;
-        while(map[x])
+        x = -1;
+        while(map[++x])
         {
             if (ft_atoi(map[y][x]) > coord->max_heigth)
                 coord->max_heigth = ft_atoi(map[y][x]);
@@ -33,9 +33,9 @@ void max_coord(char ***map, t_max *coord)
         }
         y++;
     }
-    coord->max_x = x - 1;
-    coord->max_y = y - 1;
-}
+    coord->max_x = x;
+    coord->max_y = y;
+}*/
 
 char    ***read_file(char ***map, int fd)
 {
@@ -47,7 +47,7 @@ char    ***read_file(char ***map, int fd)
     
     i = -1;
     actual_len = 0;
-    while ((get_next_line(fd, &line)) == 1)
+    while ((get_next_line(fd, &line)) >= 0)
     {
         split_len = 0;
         temp = ft_strsplit(line, ' ');
@@ -59,8 +59,7 @@ char    ***read_file(char ***map, int fd)
         map[++i] = temp;
         free(line);
     }
-    if ((get_next_line(fd, &line) < 0))
+    if ((get_next_line(fd, &line)) < 0)
         return (NULL);
-    free(line);
     return (map);
 }

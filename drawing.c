@@ -54,6 +54,8 @@ void draw_map(char ***array_pos, t_env *env)
         x = -1;
         while (array_pos[y][++x])
         {
+            if (!array_pos[y][x])
+                break ;
             one[0] = x * env->zoom;
             one[1] = (y - (ft_atoi(array_pos[y][x]) * env->depth)) * env->zoom;
             if (array_pos[y][x + 1] != '\0')
