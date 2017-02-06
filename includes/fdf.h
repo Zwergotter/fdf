@@ -45,7 +45,7 @@ typedef struct		s_env
     int             len;
     int				win_x;
     int				win_y;
-    int             zoom;
+    float             zoom;
     float           depth;
 }					t_env;
 
