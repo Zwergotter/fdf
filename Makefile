@@ -27,8 +27,7 @@ OBJ = $(SRC:.c=.o)
 # Compilation
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g 
-PRGFLAGS = -L libft/ -lft -lmlx -framework OpenGL -framework AppKit
-
+PRGFLAGS = -L libft/ -L minilibx/ -lmlx -framework OpenGL -framework AppKit minilibx/libmlx.a libft/libft.a
 
 # Rules
 
