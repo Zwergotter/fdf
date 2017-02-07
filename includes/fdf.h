@@ -58,7 +58,7 @@ typedef struct		s_env
 }                   t_max;*/
 
 char	***read_file(char ***map, int fd);
-void    draw_line(float *one, float *two, t_env *env);
+void    draw_line(double *one, double *two, t_env *env);
 void    draw_map(char ***array_pos, t_env *env);
 /*void    max_coord(char ***map, t_max *coord);*/
 

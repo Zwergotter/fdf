@@ -13,7 +13,7 @@
 
 #include "fdf.h"
 
-void    draw_line(float *one, float *two, t_env *env)
+void    draw_line(double *one, double *two, t_env *env)
 {
     int start;
     double a;
@@ -21,7 +21,7 @@ void    draw_line(float *one, float *two, t_env *env)
 
     if (one[0] == two[0] && one[1] == two[1])
         mlx_pixel_put(env->mlx, env->win, one[0], one[1], 00255555000);
-    else if (fabsf(one[1] - two[1]) <= fabsf(one[0] - two[0]))
+    else if (fabs(one[1] - two[1]) <= fabs(one[0] - two[0]))
     {
         a = ((one[1] - two[1]) / (one[0] - two[0]));
         b = ((one[0] * two[1] - one[1] * two[0]) / (one[0] - two[0]));
@@ -41,12 +41,12 @@ void    draw_line(float *one, float *two, t_env *env)
 
 void draw_map(char ***array_pos, t_env *env)
 {
-    float *one = NULL;
-    float *two = NULL;
+    double *one = NULL;
+    double *two = NULL;
     int x;
     int y;
     
-    if ((!(one = (float*)malloc(sizeof(float) * 2))) || (!(two = (float*)malloc(sizeof(float) * 2))))
+    if ((!(one = (double*)malloc(sizeof(double) * 2))) || (!(two = (double*)malloc(sizeof(double) * 2))))
         exit (-1);
     y = -1;
     while (array_pos[++y])
@@ -62,7 +62,7 @@ void draw_map(char ***array_pos, t_env *env)
                 two[1] = (y - ft_atoi(array_pos[y][x + 1]) * env->depth) * env->zoom;
                 draw_line(one, two, env);
             }
-            if (y + 1 < env->len)
+            if (y + 1 < env->len && array_pos[y + 1] && array_pos[y + 1][x])
             {
                 two[0] = x * env->zoom;
                 two[1] = (y + 1 - ft_atoi(array_pos[y + 1][x]) * env->depth) * env->zoom;
