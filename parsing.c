@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-/*void max_coord(char ***map, t_max *coord)
+void max_coord(char ***map, t_max *coord)
 {
     int y;
     int x;
@@ -35,7 +35,7 @@
     }
     coord->max_x = x;
     coord->max_y = y;
-}*/
+}
 
 char    ***read_file(char ***map, int fd)
 {
