@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 00:07:52 by edeveze           #+#    #+#             */
-/*   Updated: 2017/01/29 00:08:06 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/02/08 15:38:51 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,35 +39,42 @@ void    draw_line(double *one, double *two, t_env *env)
     }
 }
 
-void draw_map(char ***array_pos, t_env *env)
+void check_before_draw(t_env *env, double *one, double *two)
 {
-    double *one = NULL;
-    double *two = NULL;
     int x;
     int y;
-    
-    if ((!(one = (double*)malloc(sizeof(double) * 2))) || (!(two = (double*)malloc(sizeof(double) * 2))))
-        exit (-1);
+
     y = -1;
-    while (array_pos[++y])
+    while (env->array_pos[++y])
     {
         x = -1;
-        while (array_pos[y][++x] != '\0')
+        while (env->array_pos[y][++x] != '\0')
         {
             one[0] = x * env->zoom;
-            one[1] = (y - (ft_atoi(array_pos[y][x]) * env->depth)) * env->zoom;
-            if (array_pos[y][x + 1] != '\0')
+            one[1] = (y - (ft_atoi(env->array_pos[y][x]) * env->depth)) * env->zoom;
+            if (env->array_pos[y][x + 1])
             {
                 two[0] = (x + 1) * env->zoom;
-                two[1] = (y - ft_atoi(array_pos[y][x + 1]) * env->depth) * env->zoom;
+                two[1] = (y - ft_atoi(env->array_pos[y][x + 1]) * env->depth) * env->zoom;
                 draw_line(one, two, env);
             }
-            if (y + 1 < env->len && array_pos[y + 1] && array_pos[y + 1][x])
+            if (y + 1 < env->len && env->array_pos[y + 1][x])
             {
                 two[0] = x * env->zoom;
-                two[1] = (y + 1 - ft_atoi(array_pos[y + 1][x]) * env->depth) * env->zoom;
+                two[1] = (y + 1 - (ft_atoi(env->array_pos[y + 1][x]) * env->depth)) * env->zoom;
                 draw_line(one, two, env);
             }
         }
     }
+}
+
+int draw_map(t_env *env)
+{
+    double *one = NULL;
+    double *two = NULL;
+    
+    if ((!(one = (double*)malloc(sizeof(double) * 2))) || (!(two = (double*)malloc(sizeof(double) * 2))))
+        return (0);
+    check_before_draw(env, one, two);
+    return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 17:27:21 by edeveze           #+#    #+#             */
-/*   Updated: 2017/01/26 17:58:00 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/02/08 15:35:00 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <stdlib.h>
 
 /*
-** Libraries for perror adnd strerror.
+** Libraries for perror and strerror.
 */
 
 # include <stdio.h>
@@ -47,19 +47,10 @@ typedef struct		s_env
     int				win_y;
     int             zoom;
     double          depth;
+    char            ***array_pos;
 }					t_env;
 
-typedef struct      s_max
-{
-    int             max_heigth;
-    int             min_heigth;
-    int             max_x;
-    int             max_y;
-}                   t_max;
-
 char	***read_file(char ***map, int fd);
-void    draw_line(double *one, double *two, t_env *env);
-void    draw_map(char ***array_pos, t_env *env);
-void    max_coord(char ***map, t_max *coord);
+int     draw_map(t_env *env);
 
 #endif
