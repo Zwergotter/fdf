@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 19:08:40 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/09 11:46:23 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/02/09 13:03:54 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int     check_parsing(char **map)
         x = 0;
         while (map[y][x])
         {
-            if (!(map[y][x] > 47 && map[y][x] < 58) || !(map[y][x] == '-'))
+            if (!(map[y][x] > 47 && map[y][x] < 58) && !(map[y][x] == '-'))
                 return (0);
             x++;
         }
@@ -42,7 +42,7 @@ char    ***read_file(char ***map, int fd)
 
     i = -1;
     actual_len = 0;
-    while ((get_next_line(fd, &line)) >= 0)
+    while ((get_next_line(fd, &line)) > 0)
     {
         split_len = 0;
         temp = ft_strsplit(line, ' ');
