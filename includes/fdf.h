@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 17:27:21 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/08 15:35:00 by cosi             ###   ########.fr       */
+/*   Updated: 2017/02/09 13:28:09 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,12 @@ typedef struct		s_env
     int				win_x;
     int				win_y;
     int             zoom;
+    int             move;
     double          depth;
     char            ***array_pos;
 }					t_env;
 
+void init_everything(t_env *env, char *map);
 char	***read_file(char ***map, int fd);
 int     draw_map(t_env *env);
 

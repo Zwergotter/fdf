@@ -6,7 +6,7 @@
 #    By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/24 21:39:34 by edeveze           #+#    #+#              #
-#    Updated: 2017/01/26 14:21:51 by edeveze          ###   ########.fr        #
+#    Updated: 2017/02/09 13:28:21 by edeveze          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,14 @@ INC = -I includes -I libft/includes -I minilibx/
 SRC = fdf.c\
 	  parsing.c\
 	  drawing.c\
+	  init.c\
 
 # Objects
 OBJ = $(SRC:.c=.o)
 
 # Compilation
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g 
+CFLAGS = -Wall -Wextra -Werror -g
 PRGFLAGS = -L libft/ -L minilibx/ -lmlx -framework OpenGL -framework AppKit minilibx/libmlx.a libft/libft.a
 
 # Rules
