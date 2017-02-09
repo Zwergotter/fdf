@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 13:27:01 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/09 13:29:58 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/02/09 16:53:43 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ int     map_length(int fd)
 void init_env(t_env *env, char *map)
 {
 	int fd;
+    t_error error;
 
+    error = ARGUMENT;
 	if ((fd = open(map, O_RDONLY)) < 0)
-        exit (0);
+        error_displayed(error);
 	env->win_x = 1200;
 	env->win_y = 800;
 	env->mlx = mlx_init();
@@ -42,26 +44,29 @@ void init_env(t_env *env, char *map)
 	env->zoom = 20;
     env->move = 200;
 	env->depth = 0.1;
-	printf("in init_env - env address is %p\n", env);
-	printf("in init_env - env->mlx address is %p\n", env->mlx);
 	close(fd);
 }
 
 void init_array(char ***array_pos, char *file)
 {
 		int		fd;
+        t_error error;
 
+        error = ARGUMENT;
 		fd = open(file, O_RDONLY);
 		if (!(array_pos = read_file(array_pos, fd)))
-            exit (0);
+            error_displayed(error);
 		close(fd);
 }
 
 void init_everything(t_env *env, char *map)
 {
+    t_error error;
+
+    error = MALLOC;
     init_env(env, map);
     if (!(env->array_pos = (char***)malloc(sizeof(char) * env->len + 1)))
-        exit (0);
+        error_displayed(error);
     env->array_pos[env->len] = NULL;
     init_array(env->array_pos, map);
 }

@@ -6,7 +6,7 @@
 #    By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/24 21:39:34 by edeveze           #+#    #+#              #
-#    Updated: 2017/02/09 13:28:21 by edeveze          ###   ########.fr        #
+#    Updated: 2017/02/09 16:43:52 by edeveze          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC = fdf.c\
 	  parsing.c\
 	  drawing.c\
 	  init.c\
+	  error.c\
 
 # Objects
 OBJ = $(SRC:.c=.o)

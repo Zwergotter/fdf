@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 00:07:52 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/08 15:38:51 by cosi             ###   ########.fr       */
+/*   Updated: 2017/02/09 16:50:40 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void    draw_line(double *one, double *two, t_env *env)
     double b;
 
     if (one[0] == two[0] && one[1] == two[1])
-        mlx_pixel_put(env->mlx, env->win, one[0], one[1], 00255555000);
+        mlx_pixel_put(env->mlx, env->win, one[0] + env->move, one[1] + env->move, 00255555000);
     else if (fabs(one[1] - two[1]) <= fabs(one[0] - two[0]))
     {
         a = ((one[1] - two[1]) / (one[0] - two[0]));
         b = ((one[0] * two[1] - one[1] * two[0]) / (one[0] - two[0]));
         start = (one[0] < two[0] ? one[0] : two[0]) - 1;
         while (++start <= (one[0] < two[0] ? two[0] : one[0]))
-            mlx_pixel_put(env->mlx, env->win, start, (a * start + b), 00255555000);
+            mlx_pixel_put(env->mlx, env->win, start + env->move, (a * start + b) + env->move, 00255555000);
     }
     else
     {
@@ -35,7 +35,7 @@ void    draw_line(double *one, double *two, t_env *env)
         b = ((one[0] * two[1] - one[1] * two[0]));
         start = (one[1] < two[1] ? one[1] : two[1]) - 1;
         while (++start <= (one[1] < two[1] ? two[1] : one[1]))
-            mlx_pixel_put(env->mlx, env->win, (start * (one[0] - two[0]) - b) / a, start, 00255555000);
+            mlx_pixel_put(env->mlx, env->win, ((start * (one[0] - two[0]) - b) / a) + env->move, start + env->move, 00255555000);
     }
 }
 
@@ -72,9 +72,11 @@ int draw_map(t_env *env)
 {
     double *one = NULL;
     double *two = NULL;
-    
+    t_error error;
+
+    error = MALLOC;
     if ((!(one = (double*)malloc(sizeof(double) * 2))) || (!(two = (double*)malloc(sizeof(double) * 2))))
-        return (0);
+        error_displayed(error);
     check_before_draw(env, one, two);
     return (1);
 }

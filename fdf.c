@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 17:29:35 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/09 13:29:06 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/02/09 16:49:52 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,21 @@ void	loop(t_env *env)
 int	main(int ac, char **av)
 {
 	t_env *env;
+	t_error error;
 
+	error = MALLOC;
 	if (ac == 2)
 	{
 		if (!(env = (t_env*)malloc(sizeof(t_env))))
-			return (-1);
+			error_displayed(error);
         init_everything(env, av[1]);
 		loop(env);
 		printf("no segfault4\n");
+	}
+	else
+	{
+		error = USAGE;
+		error_displayed(error);
 	}
 	return (0);
 }
