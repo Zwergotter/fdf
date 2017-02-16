@@ -65,7 +65,7 @@ void init_everything(t_env *env, char *map)
 
     error = MALLOC;
     init_env(env, map);
-    if (!(env->array_pos = (char***)malloc(sizeof(char) * env->len + 1)))
+    if (!(env->array_pos = malloc(sizeof(char **) * env->len + 1)))
         error_displayed(error);
     env->array_pos[env->len] = NULL;
     init_array(env->array_pos, map);
