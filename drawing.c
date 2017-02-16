@@ -3,17 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 00:07:52 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/09 16:50:40 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/02/16 19:08:23 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "fdf.h"
 
-void    draw_line(double *one, double *two, t_env *env)
+
+void    rotate(double *one, double *two, t_env *env)
+{
+    one[0] = (one[0] * cos(env->rotation)) - (one[1] * sin(env->rotation));
+    one[1] = (one[0] * sin(env->rotation)) + (one[1] * cos(env->rotation));
+    two[0] = (two[0] * cos(env->rotation)) - (two[1] * sin(env->rotation));
+    two[1] = (two[0] * sin(env->rotation)) + (two[1] * cos(env->rotation));
+}
+
+void draw(double *one, double *two, t_env *env)
 {
     int start;
     double a;
@@ -37,6 +46,13 @@ void    draw_line(double *one, double *two, t_env *env)
         while (++start <= (one[1] < two[1] ? two[1] : one[1]))
             mlx_pixel_put(env->mlx, env->win, ((start * (one[0] - two[0]) - b) / a) + env->move, start + env->move, 00255555000);
     }
+}
+
+void    draw_line(double *one, double *two, t_env *env)
+{
+    if (env->rotation)
+        rotate(one, two, env);
+    draw(one, two, env);
 }
 
 void check_before_draw(t_env *env, double *one, double *two)

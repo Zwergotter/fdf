@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 17:27:21 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/09 16:53:19 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/02/16 18:52:51 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct		s_env
     int				win_y;
     int             zoom;
     int             move;
+    int             rotation;
     double          depth;
     char            ***array_pos;
 }					t_env;
@@ -56,9 +57,11 @@ typedef enum e_error
     ARGUMENT, MALLOC, OPEN, USAGE
 }            t_error;
 
-void init_everything(t_env *env, char *map);
+void    init_everything(t_env *env, char *map);
 char	***read_file(char ***map, int fd);
 int     draw_map(t_env *env);
 void    error_displayed(t_error error);
+void    apply_rotation(t_env *env);
+int     key_pressed(int keycode, t_env *env);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+         #
+#    By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/24 21:39:34 by edeveze           #+#    #+#              #
-#    Updated: 2017/02/09 16:43:52 by edeveze          ###   ########.fr        #
+#    Updated: 2017/02/16 19:00:24 by cosi             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRC = fdf.c\
 	  drawing.c\
 	  init.c\
 	  error.c\
+	  keycodes.c\
+	  rotation.c\
 
 # Objects
 OBJ = $(SRC:.c=.o)

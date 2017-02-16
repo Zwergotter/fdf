@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 13:27:01 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/09 16:53:43 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/02/16 19:08:36 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void init_env(t_env *env, char *map)
 	env->mlx = mlx_init();
 	env->win = mlx_new_window(env->mlx, env->win_x, env->win_y, "fdf");
 	env->len = map_length(fd);
-	env->zoom = 20;
-    env->move = 200;
+	env->zoom = 10;
+    env->move = 100;
+    env->rotation = 0;
 	env->depth = 0.1;
 	close(fd);
 }
