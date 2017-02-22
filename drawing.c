@@ -6,7 +6,7 @@
 /*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 00:07:52 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/22 12:05:38 by cosi             ###   ########.fr       */
+/*   Updated: 2017/02/22 15:08:18 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void draw(double *one, double *two, t_env *env)
 
 void    draw_line(double *one, double *two, t_env *env)
 {
-    if (env->rotation * 2 * M_PI / 360)
+    if (env->rotation)
         rotate(one, two, env);
     draw(one, two, env);
 }
