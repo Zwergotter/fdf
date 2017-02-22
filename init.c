@@ -6,7 +6,7 @@
 /*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 13:27:01 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/16 19:08:36 by cosi             ###   ########.fr       */
+/*   Updated: 2017/02/22 13:44:56 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void init_env(t_env *env, char *map)
 	env->zoom = 10;
     env->move = 100;
     env->rotation = 0;
-	env->depth = 0.1;
+	env->depth = 0.2;
 	close(fd);
 }
 

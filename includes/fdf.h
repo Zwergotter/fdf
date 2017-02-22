@@ -6,7 +6,7 @@
 /*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 17:27:21 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/16 18:52:51 by cosi             ###   ########.fr       */
+/*   Updated: 2017/02/22 13:44:32 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@
 # include "mlx.h"
 # include "libft.h"
 
+# define ZOOM_MINI 5
+# define ZOOM_MAX 30
+
 typedef struct		s_env
 {
     void			*mlx;
@@ -61,7 +64,7 @@ void    init_everything(t_env *env, char *map);
 char	***read_file(char ***map, int fd);
 int     draw_map(t_env *env);
 void    error_displayed(t_error error);
-void    apply_rotation(t_env *env);
+void    apply_rotation(t_env *env, int keycode);
 int     key_pressed(int keycode, t_env *env);
 
 #endif

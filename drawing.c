@@ -6,7 +6,7 @@
 /*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 00:07:52 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/16 19:08:23 by cosi             ###   ########.fr       */
+/*   Updated: 2017/02/22 12:05:38 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 
 void    rotate(double *one, double *two, t_env *env)
 {
-    one[0] = (one[0] * cos(env->rotation)) - (one[1] * sin(env->rotation));
-    one[1] = (one[0] * sin(env->rotation)) + (one[1] * cos(env->rotation));
-    two[0] = (two[0] * cos(env->rotation)) - (two[1] * sin(env->rotation));
-    two[1] = (two[0] * sin(env->rotation)) + (two[1] * cos(env->rotation));
+    one[0] = (one[0] * cos(env->rotation * 2 * M_PI / 360)) - (one[1] * sin(env->rotation * 2 * M_PI / 360));
+    one[1] = (one[0] * sin(env->rotation * 2 * M_PI / 360)) + (one[1] * cos(env->rotation * 2 * M_PI / 360));
+    two[0] = (two[0] * cos(env->rotation * 2 * M_PI / 360)) - (two[1] * sin(env->rotation * 2 * M_PI / 360));
+    two[1] = (two[0] * sin(env->rotation * 2 * M_PI / 360)) + (two[1] * cos(env->rotation * 2 * M_PI / 360));
 }
 
 void draw(double *one, double *two, t_env *env)
@@ -50,7 +50,7 @@ void draw(double *one, double *two, t_env *env)
 
 void    draw_line(double *one, double *two, t_env *env)
 {
-    if (env->rotation)
+    if (env->rotation * 2 * M_PI / 360)
         rotate(one, two, env);
     draw(one, two, env);
 }
@@ -76,6 +76,8 @@ void check_before_draw(t_env *env, double *one, double *two)
             }
             if (y + 1 < env->len && env->array_pos[y + 1][x])
             {
+                one[0] = x * env->zoom;
+                one[1] = (y - (ft_atoi(env->array_pos[y][x]) * env->depth)) * env->zoom;
                 two[0] = x * env->zoom;
                 two[1] = (y + 1 - (ft_atoi(env->array_pos[y + 1][x]) * env->depth)) * env->zoom;
                 draw_line(one, two, env);
