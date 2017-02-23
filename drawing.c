@@ -6,13 +6,38 @@
 /*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 00:07:52 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/22 15:08:18 by cosi             ###   ########.fr       */
+/*   Updated: 2017/02/23 15:50:31 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "fdf.h"
 
+int     apply_color(t_env *env, double first, double second)
+{
+    if (env->rotation == 0)
+    {
+        if (first - second == 0 || second - first == 0)
+            return (198008000); //rouge
+        else
+            return (121248248); //bleu
+    }
+    /*if (env->rotation > 0 && env->rotation <= 180)
+    {
+        if (second - first < 0)
+            return (198008000); //rouge
+        else
+            return (121248248); //bleu
+    }*/
+    else
+    {
+        if (second - first > 0 && second < 0)
+            return (121248248); //bleu
+        else
+            return (198008000); //rouge
+            
+    }
+}
 
 void    rotate(double *one, double *two, t_env *env)
 {
@@ -22,21 +47,21 @@ void    rotate(double *one, double *two, t_env *env)
     two[1] = (two[0] * sin(env->rotation * 2 * M_PI / 360)) + (two[1] * cos(env->rotation * 2 * M_PI / 360));
 }
 
-void draw(double *one, double *two, t_env *env)
+void    draw(double *one, double *two, t_env *env)
 {
     int start;
     double a;
     double b;
 
     if (one[0] == two[0] && one[1] == two[1])
-        mlx_pixel_put(env->mlx, env->win, one[0] + env->move, one[1] + env->move, 00255555000);
+        mlx_pixel_put(env->mlx, env->win, one[0] + env->move, one[1] + env->move, apply_color(env, one[0], two[0]));
     else if (fabs(one[1] - two[1]) <= fabs(one[0] - two[0]))
     {
         a = ((one[1] - two[1]) / (one[0] - two[0]));
         b = ((one[0] * two[1] - one[1] * two[0]) / (one[0] - two[0]));
         start = (one[0] < two[0] ? one[0] : two[0]) - 1;
         while (++start <= (one[0] < two[0] ? two[0] : one[0]))
-            mlx_pixel_put(env->mlx, env->win, start + env->move, (a * start + b) + env->move, 00255555000);
+            mlx_pixel_put(env->mlx, env->win, start + env->move, (a * start + b) + env->move, apply_color(env, one[1], two[1]));
     }
     else
     {
@@ -44,7 +69,7 @@ void draw(double *one, double *two, t_env *env)
         b = ((one[0] * two[1] - one[1] * two[0]));
         start = (one[1] < two[1] ? one[1] : two[1]) - 1;
         while (++start <= (one[1] < two[1] ? two[1] : one[1]))
-            mlx_pixel_put(env->mlx, env->win, ((start * (one[0] - two[0]) - b) / a) + env->move, start + env->move, 00255555000);
+            mlx_pixel_put(env->mlx, env->win, ((start * (one[0] - two[0]) - b) / a) + env->move, start + env->move, apply_color(env, one[0], two[0]));
     }
 }
 

@@ -6,7 +6,7 @@
 /*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 17:27:21 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/23 10:52:39 by cosi             ###   ########.fr       */
+/*   Updated: 2017/02/23 14:28:37 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct		s_env
     void			*win;
     int             len;
     int             max_x;
+    int             min_y;
     int             max_y;
     int				win_x;
     int				win_y;

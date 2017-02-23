@@ -6,7 +6,7 @@
 /*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 13:27:01 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/23 11:34:11 by cosi             ###   ########.fr       */
+/*   Updated: 2017/02/23 14:31:16 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void max_positions(t_env *env)
                 env->max_x = abs(x);
             if (abs(y - (ft_atoi(env->array_pos[y][x])) > env->max_y))
                 env->max_y = abs(y - (ft_atoi(env->array_pos[y][x])));
+            if (y - (ft_atoi(env->array_pos[y][x])) < env->max_y)
+                env->min_y = y - (ft_atoi(env->array_pos[y][x]));
         }
     }
 }
@@ -56,6 +58,7 @@ void init_env(t_env *env, char *map)
 	if ((fd = open(map, O_RDONLY)) < 0)
         error_displayed(error);
     env->max_x = 0;
+    env->min_y = 0;
     env->max_y = 0;
 	env->win_x = 1200;
 	env->win_y = 800;
