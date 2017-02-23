@@ -6,7 +6,7 @@
 /*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 17:27:21 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/22 13:44:32 by cosi             ###   ########.fr       */
+/*   Updated: 2017/02/23 10:52:39 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,21 @@
 # include "mlx.h"
 # include "libft.h"
 
+# define NAME_WIN "fdf"
+
 # define ZOOM_MINI 5
 # define ZOOM_MAX 30
+
+# define DEPTH_MINI -1
+# define DEPTH_MAX 1
 
 typedef struct		s_env
 {
     void			*mlx;
     void			*win;
     int             len;
+    int             max_x;
+    int             max_y;
     int				win_x;
     int				win_y;
     int             zoom;

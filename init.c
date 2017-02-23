@@ -6,7 +6,7 @@
 /*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 13:27:01 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/22 13:44:56 by cosi             ###   ########.fr       */
+/*   Updated: 2017/02/23 11:34:11 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,25 @@ int     map_length(int fd)
     return (i);
 }
 
+void max_positions(t_env *env)
+{
+   int x;
+   int y;
+
+    y = -1;
+    while (env->array_pos[++y])
+    {
+        x = -1;
+        while (env->array_pos[y][++x] != '\0')
+        {
+            if (abs(x) > env->max_x)
+                env->max_x = abs(x);
+            if (abs(y - (ft_atoi(env->array_pos[y][x])) > env->max_y))
+                env->max_y = abs(y - (ft_atoi(env->array_pos[y][x])));
+        }
+    }
+}
+
 void init_env(t_env *env, char *map)
 {
 	int fd;
@@ -36,28 +55,31 @@ void init_env(t_env *env, char *map)
     error = ARGUMENT;
 	if ((fd = open(map, O_RDONLY)) < 0)
         error_displayed(error);
+    env->max_x = 0;
+    env->max_y = 0;
 	env->win_x = 1200;
 	env->win_y = 800;
 	env->mlx = mlx_init();
-	env->win = mlx_new_window(env->mlx, env->win_x, env->win_y, "fdf");
+	env->win = mlx_new_window(env->mlx, env->win_x, env->win_y, NAME_WIN);
 	env->len = map_length(fd);
 	env->zoom = 10;
-    env->move = 100;
+    env->move = 0;
     env->rotation = 0;
 	env->depth = 0.2;
 	close(fd);
 }
 
-void init_array(char ***array_pos, char *file)
+void init_array(char *file, t_env *env)
 {
 		int		fd;
         t_error error;
 
         error = ARGUMENT;
 		fd = open(file, O_RDONLY);
-		if (!(array_pos = read_file(array_pos, fd)))
+		if (!(env->array_pos = read_file(env->array_pos, fd)))
             error_displayed(error);
 		close(fd);
+        max_positions(env);
 }
 
 void init_everything(t_env *env, char *map)
@@ -69,5 +91,5 @@ void init_everything(t_env *env, char *map)
     if (!(env->array_pos = malloc(sizeof(char **) * env->len + 1)))
         error_displayed(error);
     env->array_pos[env->len] = NULL;
-    init_array(env->array_pos, map);
+    init_array(map, env);
 }
