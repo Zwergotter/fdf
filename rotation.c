@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rot.c                                         :+:      :+:    :+:   */
+/*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,6 +12,14 @@
 
 #include "fdf.h"
 
+int     color(int color1, int color2)
+{
+        if (color1 > 0 || color2 > 0)
+            return (121248248); //bleu
+        else
+            return (198008000); //rouge
+            
+}
 
 void	apply_rot(t_env *env, int keycode)
 {

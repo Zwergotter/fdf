@@ -13,15 +13,6 @@
 
 #include "fdf.h"
 
-int     color(int color1, int color2)
-{
-        if (color1 > 0 || color2 > 0)
-            return (121248248); //bleu
-        else
-            return (198008000); //rouge
-            
-}
-
 void    rotate(double *one, double *two, t_env *env)
 {
     one[0] = (one[0] * cos(env->rot * 2 * M_PI / 360)) - (one[1] * sin(env->rot * 2 * M_PI / 360));

@@ -74,5 +74,6 @@ int     draw_map(t_env *env);
 void    error_displayed(t_error error);
 void    apply_rot(t_env *env, int keycode);
 int     key_pressed(int keycode, t_env *env);
+int     color(int color1, int color2);
 
 #endif
