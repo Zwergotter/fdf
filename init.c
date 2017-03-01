@@ -63,7 +63,7 @@ void init_env(t_env *env, char *map)
 	env->win_x = 1200;
 	env->win_y = 800;
 	env->mlx = mlx_init();
-	env->win = mlx_new_window(env->mlx, env->win_x, env->win_y, NAME_WIN);
+	env->win = mlx_new_window(env->mlx, env->win_x, env->win_y, FDF_NAME_WIN);
 	env->len = map_length(fd);
 	env->zoom = 10;
     env->mv_x = 0;

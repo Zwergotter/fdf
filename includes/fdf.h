@@ -38,21 +38,21 @@
 # include "mlx.h"
 # include "libft.h"
 
-# define NAME_WIN "fdf"
+# define FDF_NAME_WIN "fdf"
 
-# define ZOOM 3
-# define Z_MINI 3
-# define Z_MAX 60
+# define FDF_ZOOM 3
+# define FDF_Z_MINI 3
+# define FDF_Z_MAX 60
 
-# define DEPTH 0.05
-# define D_MINI -1
-# define D_MAX 1
+# define FDF_DEPTH 0.05
+# define FDF_D_MINI -1
+# define FDF_D_MAX 1
 
-# define ROT 10
-# define R_MINI 0
-# define R_MAX 360
+# define FDF_ROT 10
+# define FDF_R_MINI 0
+# define FDF_R_MAX 360
 
-# define MOVING 10
+# define FDF_MOVING 10
 
 
 typedef struct		s_env
@@ -82,8 +82,13 @@ void    init_everything(t_env *env, char *map);
 char	***read_file(char ***map, int fd);
 int     draw_map(t_env *env);
 void    error_displayed(t_error error);
-void    apply_rot(t_env *env, int keycode);
+
 int     key_pressed(int keycode, t_env *env);
+
 int     color(int color1, int color2);
+void    modify_zoom(t_env *env, int keycode);
+void    moving_map(t_env *env, int keycode);
+void    changing_depth(t_env *env, int keycode);
+void    apply_rot(t_env *env, int keycode);
 
 #endif
