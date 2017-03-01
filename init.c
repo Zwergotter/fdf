@@ -65,7 +65,7 @@ void init_env(t_env *env, char *map)
 	env->mlx = mlx_init();
 	env->win = mlx_new_window(env->mlx, env->win_x, env->win_y, FDF_NAME_WIN);
 	env->len = map_length(fd);
-	env->zoom = 10;
+	env->zoom = FDF_ZOOM * FDF_Z_MINI;
     env->mv_x = 0;
     env->mv_y = 0;
     env->rot = 0;

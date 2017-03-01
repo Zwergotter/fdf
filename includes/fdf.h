@@ -40,8 +40,8 @@
 
 # define FDF_NAME_WIN "fdf"
 
-# define FDF_ZOOM 3
-# define FDF_Z_MINI 3
+# define FDF_ZOOM 2
+# define FDF_Z_MINI 2
 # define FDF_Z_MAX 60
 
 # define FDF_DEPTH 0.05
@@ -52,7 +52,7 @@
 # define FDF_R_MINI 0
 # define FDF_R_MAX 360
 
-# define FDF_MOVING 10
+# define FDF_MOVING 50
 
 
 typedef struct		s_env
