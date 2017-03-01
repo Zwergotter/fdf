@@ -24,17 +24,17 @@ int     color(int color1, int color2)
 void	apply_rot(t_env *env, int keycode)
 {
 	mlx_clear_window(env->mlx, env->win);
-	if (keycode == 125) /////////////////////////////////////////////////keycode for up and 8
+	if (keycode == 84) /////////////////////////////////////////////////keycode for up and 8
 		{
-			if (env->rot == 360)
-				env->rot = 0;
-			env->rot += 30;
+			if (env->rot == R_MAX)
+				env->rot = R_MINI;
+			env->rot += ROT;
 		}
-	if (keycode == 126) /////////////////////////////////////////////////keycode for down and 2
+	if (keycode == 91) /////////////////////////////////////////////////keycode for down and 2
 		{
-			if (env->rot == 0)
-				env->rot = 360;
-			env->rot -= 30;
+			if (env->rot == R_MINI)
+				env->rot = R_MAX;
+			env->rot -= ROT;
 		}
 	draw_map(env);
 }
