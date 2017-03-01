@@ -57,8 +57,8 @@ typedef struct		s_env
     int				win_x;
     int				win_y;
     int             zoom;
-    int             move;
-    int             rotation;
+    int             mv;
+    int             rot;
     double          depth;
     char            ***array_pos;
 }					t_env;
@@ -72,7 +72,7 @@ void    init_everything(t_env *env, char *map);
 char	***read_file(char ***map, int fd);
 int     draw_map(t_env *env);
 void    error_displayed(t_error error);
-void    apply_rotation(t_env *env, int keycode);
+void    apply_rot(t_env *env, int keycode);
 int     key_pressed(int keycode, t_env *env);
 
 #endif

@@ -26,9 +26,9 @@ void moving_map(t_env *env, int keycode)
 {
 	mlx_clear_window(env->mlx, env->win);
 	if (keycode == 123)
-		env->move -= 10;
+		env->mv -= 10;
 	else
-		env->move += 10;
+		env->mv += 10;
 	draw_map(env);
 }
 
@@ -45,7 +45,7 @@ void changing_depth(t_env *env, int keycode)
 int	key_pressed(int keycode, t_env *env)
 {
 	if (keycode == 125 || keycode == 126)
-		apply_rotation(env, keycode);
+		apply_rot(env, keycode);
 	if ((keycode == 24 && env->zoom < ZOOM_MAX) || (keycode == 27 && env->zoom > ZOOM_MINI))
 		modify_zoom(env, keycode);
 	if (keycode == 123 || keycode == 124)
