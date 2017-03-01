@@ -13,7 +13,7 @@
 
 #include "fdf.h"
 
-int     apply_color(int color1, int color2)
+int     color(int color1, int color2)
 {
         if (color1 > 0 || color2 > 0)
             return (121248248); //bleu
@@ -24,41 +24,41 @@ int     apply_color(int color1, int color2)
 
 void    rotate(double *one, double *two, t_env *env)
 {
-    one[0] = (one[0] * cos(env->rotation * 2 * M_PI / 360)) - (one[1] * sin(env->rotation * 2 * M_PI / 360));
-    one[1] = (one[0] * sin(env->rotation * 2 * M_PI / 360)) + (one[1] * cos(env->rotation * 2 * M_PI / 360));
-    two[0] = (two[0] * cos(env->rotation * 2 * M_PI / 360)) - (two[1] * sin(env->rotation * 2 * M_PI / 360));
-    two[1] = (two[0] * sin(env->rotation * 2 * M_PI / 360)) + (two[1] * cos(env->rotation * 2 * M_PI / 360));
+    one[0] = (one[0] * cos(env->rot * 2 * M_PI / 360)) - (one[1] * sin(env->rot * 2 * M_PI / 360));
+    one[1] = (one[0] * sin(env->rot * 2 * M_PI / 360)) + (one[1] * cos(env->rot * 2 * M_PI / 360));
+    two[0] = (two[0] * cos(env->rot * 2 * M_PI / 360)) - (two[1] * sin(env->rot * 2 * M_PI / 360));
+    two[1] = (two[0] * sin(env->rot * 2 * M_PI / 360)) + (two[1] * cos(env->rot * 2 * M_PI / 360));
 }
 
-void    draw(double *one, double *two, t_env *env, int color1, int color2)
+void    draw(double *one, double *two, t_env *env, int z, int z_bis)
 {
-    int start;
+    int begin;
     double a;
     double b;
 
     if (one[0] == two[0] && one[1] == two[1])
-        mlx_pixel_put(env->mlx, env->win, one[0] + env->move, one[1] + env->move, apply_color(color1, color2));
+        mlx_pixel_put(env->mlx, env->win, one[0] + env->mv, one[1] + env->mv, color(z, z_bis));
     else if (fabs(one[1] - two[1]) <= fabs(one[0] - two[0]))
     {
         a = ((one[1] - two[1]) / (one[0] - two[0]));
         b = ((one[0] * two[1] - one[1] * two[0]) / (one[0] - two[0]));
-        start = (one[0] < two[0] ? one[0] : two[0]) - 1;
-        while (++start <= (one[0] < two[0] ? two[0] : one[0]))
-            mlx_pixel_put(env->mlx, env->win, start + env->move, (a * start + b) + env->move, apply_color(color1, color2));
+        begin = (one[0] < two[0] ? one[0] : two[0]) - 1;
+        while (++begin <= (one[0] < two[0] ? two[0] : one[0]))
+            mlx_pixel_put(env->mlx, env->win, begin + env->mv, (a * begin + b) + env->mv, color(z, z_bis));
     }
     else
     {
         a = ((one[1] - two[1]));
         b = ((one[0] * two[1] - one[1] * two[0]));
-        start = (one[1] < two[1] ? one[1] : two[1]) - 1;
-        while (++start <= (one[1] < two[1] ? two[1] : one[1]))
-            mlx_pixel_put(env->mlx, env->win, ((start * (one[0] - two[0]) - b) / a) + env->move, start + env->move, apply_color(color1, color2));
+        begin = (one[1] < two[1] ? one[1] : two[1]) - 1;
+        while (++begin <= (one[1] < two[1] ? two[1] : one[1]))
+            mlx_pixel_put(env->mlx, env->win, ((begin * (one[0] - two[0]) - b) / a) + env->mv, begin + env->mv, color(z, z_bis));
     }
 }
 
 void    draw_line(double *one, double *two, t_env *env, int z, int z_bis)
 {
-    if (env->rotation)
+    if (env->rot)
         rotate(one, two, env);
     one[0] = one[0] * env->zoom;
     one[1] = (one[1] - (z * env->depth)) * env->zoom;        
@@ -80,20 +80,16 @@ void check_before_draw(t_env *env, double *one, double *two)
         {
             one[0] = x;
             one[1] = y;
+            two[0] = x + 1;
+            two[1] = y;
             if (env->array_pos[y][x + 1])
-            {
-                two[0] = (x + 1);
-                two[1] = y;
                 draw_line(one, two, env, ft_atoi(env->array_pos[y][x]), ft_atoi(env->array_pos[y][x + 1]));
-            }
+            one[0] = x;
+            one[1] = y;
+            two[0] = x;
+            two[1] = y + 1;
             if (y + 1 < env->len && env->array_pos[y + 1][x])
-            {
-                one[0] = x;
-                one[1] = y;
-                two[0] = x;
-                two[1] = y + 1;
                 draw_line(one, two, env, ft_atoi(env->array_pos[y][x]), ft_atoi(env->array_pos[y + 1][x]));
-            }
         }
     }
 }
