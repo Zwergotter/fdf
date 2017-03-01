@@ -56,11 +56,15 @@ void    draw(double *one, double *two, t_env *env, int color1, int color2)
     }
 }
 
-void    draw_line(double *one, double *two, t_env *env, int color1, int color2)
+void    draw_line(double *one, double *two, t_env *env, int z, int z_bis)
 {
     if (env->rotation)
         rotate(one, two, env);
-    draw(one, two, env, color1, color2);
+    one[0] = one[0] * env->zoom;
+    one[1] = (one[1] - (z * env->depth)) * env->zoom;        
+    two[0] = two[0] * env->zoom;
+    two[1] = (two[1] - (z_bis * env->depth)) * env->zoom;
+    draw(one, two, env, z, z_bis);
 }
 
 void check_before_draw(t_env *env, double *one, double *two)
@@ -74,20 +78,20 @@ void check_before_draw(t_env *env, double *one, double *two)
         x = -1;
         while (env->array_pos[y][++x] != '\0')
         {
-            one[0] = x * env->zoom;
-            one[1] = (y - (ft_atoi(env->array_pos[y][x]) * env->depth)) * env->zoom;
+            one[0] = x;
+            one[1] = y;
             if (env->array_pos[y][x + 1])
             {
-                two[0] = (x + 1) * env->zoom;
-                two[1] = (y - ft_atoi(env->array_pos[y][x + 1]) * env->depth) * env->zoom;
+                two[0] = (x + 1);
+                two[1] = y;
                 draw_line(one, two, env, ft_atoi(env->array_pos[y][x]), ft_atoi(env->array_pos[y][x + 1]));
             }
             if (y + 1 < env->len && env->array_pos[y + 1][x])
             {
-                one[0] = x * env->zoom;
-                one[1] = (y - (ft_atoi(env->array_pos[y][x]) * env->depth)) * env->zoom;
-                two[0] = x * env->zoom;
-                two[1] = (y + 1 - (ft_atoi(env->array_pos[y + 1][x]) * env->depth)) * env->zoom;
+                one[0] = x;
+                one[1] = y;
+                two[0] = x;
+                two[1] = y + 1;
                 draw_line(one, two, env, ft_atoi(env->array_pos[y][x]), ft_atoi(env->array_pos[y + 1][x]));
             }
         }
