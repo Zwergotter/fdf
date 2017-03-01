@@ -40,11 +40,20 @@
 
 # define NAME_WIN "fdf"
 
-# define ZOOM_MINI 5
-# define ZOOM_MAX 30
+# define ZOOM 3
+# define Z_MINI 3
+# define Z_MAX 60
 
-# define DEPTH_MINI -1
-# define DEPTH_MAX 1
+# define DEPTH 0.05
+# define D_MINI -1
+# define D_MAX 1
+
+# define ROT 10
+# define R_MINI 0
+# define R_MAX 360
+
+# define MOVING 10
+
 
 typedef struct		s_env
 {
@@ -57,7 +66,8 @@ typedef struct		s_env
     int				win_x;
     int				win_y;
     int             zoom;
-    int             mv;
+    int             mv_x;
+    int             mv_y;
     int             rot;
     double          depth;
     char            ***array_pos;
