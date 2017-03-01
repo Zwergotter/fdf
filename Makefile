@@ -23,7 +23,7 @@ SRC = fdf.c\
 	  init.c\
 	  error.c\
 	  keycodes.c\
-	  rotation.c\
+	  modifications.c\
 
 # Objects
 OBJ = $(SRC:.c=.o)
