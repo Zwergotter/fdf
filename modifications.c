@@ -73,29 +73,17 @@ void changing_depth(t_env *env, int keycode)
 void	apply_rot(t_env *env, int keycode)
 {
 	mlx_clear_window(env->mlx, env->win);
+	if (env->rot_x == FDF_R_MAX || env->rot_x == FDF_R_MINI)
+		env->rot_x = (env->rot_x == FDF_R_MAX) ? FDF_R_MINI : FDF_R_MAX;
+	if (env->rot_y == FDF_R_MAX || env->rot_y == FDF_R_MINI)
+		env->rot_y = (env->rot_y == FDF_R_MAX) ? FDF_R_MINI : FDF_R_MAX;
 	if (keycode == 84)
-		{
-			if (env->rot_x == FDF_R_MAX)
-				env->rot_x = FDF_R_MINI;
-			env->rot_x += FDF_ROT;
-		}
+		env->rot_x += FDF_ROT;
 	if (keycode == 91)
-		{
-			if (env->rot_x == FDF_R_MINI)
-				env->rot_x = FDF_R_MAX;
-			env->rot_x -= FDF_ROT;
-		}
+		env->rot_x -= FDF_ROT;
 	if (keycode == 92)
-		{
-			if (env->rot_y == FDF_R_MAX)
-				env->rot_y = FDF_R_MINI;
-			env->rot_y += FDF_ROT;
-		}
+		env->rot_y += FDF_ROT;
 	if (keycode == 89)
-		{
-			if (env->rot_y == FDF_R_MINI)
-				env->rot_y = FDF_R_MAX;
-			env->rot_y -= FDF_ROT;
-		}
+		env->rot_y -= FDF_ROT;
 	draw_map(env);
 }
