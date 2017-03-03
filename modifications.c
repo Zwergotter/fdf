@@ -75,15 +75,27 @@ void	apply_rot(t_env *env, int keycode)
 	mlx_clear_window(env->mlx, env->win);
 	if (keycode == 84)
 		{
-			if (env->rot == FDF_R_MAX)
-				env->rot = FDF_R_MINI;
-			env->rot += FDF_ROT;
+			if (env->rot_x == FDF_R_MAX)
+				env->rot_x = FDF_R_MINI;
+			env->rot_x += FDF_ROT;
 		}
 	if (keycode == 91)
 		{
-			if (env->rot == FDF_R_MINI)
-				env->rot = FDF_R_MAX;
-			env->rot -= FDF_ROT;
+			if (env->rot_x == FDF_R_MINI)
+				env->rot_x = FDF_R_MAX;
+			env->rot_x -= FDF_ROT;
+		}
+	if (keycode == 92)
+		{
+			if (env->rot_y == FDF_R_MAX)
+				env->rot_y = FDF_R_MINI;
+			env->rot_y += FDF_ROT;
+		}
+	if (keycode == 89)
+		{
+			if (env->rot_y == FDF_R_MINI)
+				env->rot_y = FDF_R_MAX;
+			env->rot_y -= FDF_ROT;
 		}
 	draw_map(env);
 }

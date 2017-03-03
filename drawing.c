@@ -68,30 +68,34 @@ void    draw_line(double *one, double *two, t_env *env, int z, int z_bis)
     draw(O, T, env, z, z_bis);
 }
 
-#include <stdio.h>
+#include <stdio.h>/////////////////////////////////////////////////////
 
 void check_before_draw(t_env *env, double *one, double *two)
 {
+    double T[2];
     int x;
     int y;                                        
                   
     y = -1;
     while (env->array_pos[++y])
     {
-        one[0] = 0;
-        one[1] = y;
+        one[0] = one[0] + sin(env->rot_y * 2 * M_PI / 360);
+        one[1] = one[1] - cos(env->rot_y * 2 * M_PI / 360);
+        two[0] = one[0];
+        two[1] = one[1];
         x = -1;
-        while (env->array_pos[y + 1] && env->array_pos[y + 1][++x])
+        while (env->array_pos[y][++x])
         {
-            two[0] = one[0] + sin(env->rot_y * 2 * M_PI / 360);
-            two[1] = one[1] - cos(env->rot_y * 2 * M_PI / 360);
+            two[0] = two[0] - sin(env->rot_x * 2 * M_PI / 360);
+            two[1] = two[1] + cos(env->rot_x * 2 * M_PI / 360);
+            T[0] = two[0] - sin(env->rot_x * 2 * M_PI / 360);
+            T[1] = two[1] + cos(env->rot_x * 2 * M_PI / 360);
             if (env->array_pos[y][x + 1])
-                draw_line(one, two, env, ft_atoi(env->array_pos[y][x]), ft_atoi(env->array_pos[y][x + 1]));
-            two[0] = one[0] - sin(env->rot_x * 2 * M_PI / 360);
-            two[1] = one[1] + cos(env->rot_x * 2 * M_PI / 360);
-            draw_line(one, two, env, ft_atoi(env->array_pos[y][x]), ft_atoi(env->array_pos[y + 1][x]));
-            one[0] = two[0];
-            one[1] = two[1];
+                draw_line(two, T, env, ft_atoi(env->array_pos[y][x]), ft_atoi(env->array_pos[y][x + 1]));
+            T[0] = two[0] + sin(env->rot_y * 2 * M_PI / 360);
+            T[1] = two[1] - cos(env->rot_y * 2 * M_PI / 360);
+            if (env->array_pos[y + 1] && env->array_pos[y + 1][x])
+            draw_line(two, T, env, ft_atoi(env->array_pos[y][x]), ft_atoi(env->array_pos[y + 1][x]));
         }
 
     }
