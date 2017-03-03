@@ -13,14 +13,6 @@
 
 #include "fdf.h"
 
-// void    rot_xate(double *one, double *two, t_env *env)
-// {
-//     one[0] = (one[0] * cos(env->rot * 2 * M_PI / 360)) - (one[1] * sin(env->rot * 2 * M_PI / 360));
-//     one[1] = (one[0] * sin(env->rot * 2 * M_PI / 360)) + (one[1] * cos(env->rot * 2 * M_PI / 360));
-//     two[0] = (two[0] * cos(env->rot * 2 * M_PI / 360)) - (two[1] * sin(env->rot * 2 * M_PI / 360));
-//     two[1] = (two[0] * sin(env->rot * 2 * M_PI / 360)) + (two[1] * cos(env->rot * 2 * M_PI / 360));
-// }
-
 void    draw(double *one, double *two, t_env *env, int z, int z_bis)
 {
     double begin;
@@ -43,17 +35,12 @@ void    draw(double *one, double *two, t_env *env, int z, int z_bis)
         b = ((one[0] * two[1] - one[1] * two[0]));
         begin = (one[1] < two[1] ? one[1] : two[1]) - 1;
         while (++begin <= (one[1] < two[1] ? two[1] : one[1]))
-            {
-                // printf("%f\n", begin);
-                mlx_pixel_put(env->mlx, env->win, ((begin * (one[0] - two[0]) - b) / a), begin, color(z, z_bis));
-            }
+            mlx_pixel_put(env->mlx, env->win, ((begin * (one[0] - two[0]) - b) / a), begin, color(z, z_bis));
     }
 }
 
 void    draw_line(double *one, double *two, t_env *env, int z, int z_bis)
 {
-    // if (env->rot)
-    //     rotate(one, two, env);
     double O[2];
     double T[2];
 
@@ -67,8 +54,6 @@ void    draw_line(double *one, double *two, t_env *env, int z, int z_bis)
     T[1] = ((T[1] - (z_bis * env->depth)) * env->zoom) + env->mv_y;
     draw(O, T, env, z, z_bis);
 }
-
-#include <stdio.h>/////////////////////////////////////////////////////
 
 void check_before_draw(t_env *env, double *one, double *two)
 {
@@ -101,42 +86,11 @@ void check_before_draw(t_env *env, double *one, double *two)
     }
 }
 
-// void check_before_draw(t_env *env, double *one, double *two)
-// {
-//     int x;
-//     int y;
-
-//     y = -1;
-//     while (env->array_pos[++y])
-//     {
-//         x = -1;
-//         while (env->array_pos[y][++x] != '\0')
-//         {
-//             one[0] = x;
-//             one[1] = y;
-//             two[0] = x + 1;
-//             two[1] = y;
-//             if (env->array_pos[y][x + 1])
-//                 draw_line(one, two, env, ft_atoi(env->array_pos[y][x]), ft_atoi(env->array_pos[y][x + 1]));
-//             one[0] = x;
-//             one[1] = y;
-//             two[0] = x;
-//             two[1] = y + 1;
-//             if (y + 1 < env->len && env->array_pos[y + 1][x])
-//                 draw_line(one, two, env, ft_atoi(env->array_pos[y][x]), ft_atoi(env->array_pos[y + 1][x]));
-//         }
-//     }
-// }
-
 int draw_map(t_env *env)
 {
     double one[2];
     double two[2];
-    // t_error error;
 
-    // error = MALLOC;
-    // if ((!(one = (double*)malloc(sizeof(double) * 2))) || (!(two = (double*)malloc(sizeof(double) * 2))))
-        // error_displayed(error);
     one[0] = 0;
     one[1] = 0;
     two[0] = 0;
