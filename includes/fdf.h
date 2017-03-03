@@ -68,7 +68,8 @@ typedef struct		s_env
     int             zoom;
     int             mv_x;
     int             mv_y;
-    int             rot;
+    int             rot_x;
+    int             rot_y;
     double          depth;
     char            ***array_pos;
 }					t_env;

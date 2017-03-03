@@ -14,7 +14,7 @@
 
 int	key_pressed(int key, t_env *env)
 {
-	if (key == 84 || key == 91)
+	if (key == 84 || key == 91 || key == 92 || key == 89)
 		apply_rot(env, key);
 	if ((key == 78 && env->zoom > FDF_Z_MINI) || (key == 69 && env->zoom < FDF_Z_MAX))
 		modify_zoom(env, key);

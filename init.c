@@ -68,7 +68,8 @@ void init_env(t_env *env, char *map)
 	env->zoom = FDF_ZOOM * FDF_Z_MINI;
     env->mv_x = 0;
     env->mv_y = 0;
-    env->rot = 0;
+    env->rot_x = 0;
+    env->rot_y = 0;
 	env->depth = 0.2;
 	close(fd);
 }
