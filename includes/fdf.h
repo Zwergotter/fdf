@@ -40,15 +40,15 @@
 
 # define FDF_NAME_WIN "fdf"
 
-# define FDF_ZOOM 2
-# define FDF_Z_MINI 2
-# define FDF_Z_MAX 60
+# define FDF_ZOOM 0.5
+# define FDF_Z_MINI 1
+# define FDF_Z_MAX 5
 
 # define FDF_DEPTH 0.05
 # define FDF_D_MINI -1
 # define FDF_D_MAX 1
 
-# define FDF_ROT 10
+# define FDF_ROT 5
 # define FDF_R_MINI 0
 # define FDF_R_MAX 360
 
@@ -65,12 +65,13 @@ typedef struct		s_env
     int             max_y;
     int				win_x;
     int				win_y;
-    int             zoom;
+    double          zoom;
     int             mv_x;
     int             mv_y;
     int             rot_x;
     int             rot_y;
     double          depth;
+    int             key;
     char            ***array_pos;
 }					t_env;
 
@@ -86,7 +87,7 @@ void    error_displayed(t_error error);
 
 int     key_pressed(int keycode, t_env *env);
 
-int     color(int color1, int color2);
+int     color(t_env *env, int color1, int color2);
 void    modify_zoom(t_env *env, int keycode);
 void    moving_map(t_env *env, int keycode);
 void    changing_depth(t_env *env, int keycode);

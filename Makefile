@@ -24,6 +24,7 @@ SRC = fdf.c\
 	  error.c\
 	  keycodes.c\
 	  modifications.c\
+	  colors.c\
 
 # Objects
 OBJ = $(SRC:.c=.o)

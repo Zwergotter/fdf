@@ -20,14 +20,14 @@ void    draw(double *one, double *two, t_env *env, int z, int z_bis)
     double b;
 
     if (one[0] == two[0] && one[1] == two[1])
-        mlx_pixel_put(env->mlx, env->win, one[0], one[1], color(z, z_bis));
+        mlx_pixel_put(env->mlx, env->win, one[0], one[1], color(env, z, z_bis));
     else if (fabs(one[1] - two[1]) <= fabs(one[0] - two[0]))
     {
         a = ((one[1] - two[1]) / (one[0] - two[0]));
         b = ((one[0] * two[1] - one[1] * two[0]) / (one[0] - two[0]));
         begin = (one[0] < two[0] ? one[0] : two[0]) - 1;
         while (++begin <= (one[0] < two[0] ? two[0] : one[0]))
-            mlx_pixel_put(env->mlx, env->win, begin, (a * begin + b), color(z, z_bis));
+            mlx_pixel_put(env->mlx, env->win, begin, (a * begin + b), color(env, z, z_bis));
     }
     else
     {
@@ -35,7 +35,7 @@ void    draw(double *one, double *two, t_env *env, int z, int z_bis)
         b = ((one[0] * two[1] - one[1] * two[0]));
         begin = (one[1] < two[1] ? one[1] : two[1]) - 1;
         while (++begin <= (one[1] < two[1] ? two[1] : one[1]))
-            mlx_pixel_put(env->mlx, env->win, ((begin * (one[0] - two[0]) - b) / a), begin, color(z, z_bis));
+            mlx_pixel_put(env->mlx, env->win, ((begin * (one[0] - two[0]) - b) / a), begin, color(env, z, z_bis));
     }
 }
 

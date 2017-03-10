@@ -22,6 +22,12 @@ int	key_pressed(int key, t_env *env)
 		moving_map(env, key);
 	if ((key == 86 && env->depth > FDF_D_MINI) || (key == 88 && env->depth < FDF_D_MAX))
 		changing_depth(env, key);
+	if (key == 18 || key == 29)
+		{
+			env->key = key;
+			mlx_clear_window(env->mlx, env->win);
+			draw_map(env);
+		}
 	if (key == 53)
 		exit (0);
 	printf("Code of key pressed is %d\n", key);
