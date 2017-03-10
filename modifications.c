@@ -6,13 +6,13 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 14:20:31 by edeveze           #+#    #+#             */
-/*   Updated: 2017/02/24 14:20:36 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/03/10 18:20:24 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void modify_zoom(t_env *env, int keycode)
+void	modify_zoom(t_env *env, int keycode)
 {
 	mlx_clear_window(env->mlx, env->win);
 	if (keycode == 69)
@@ -22,7 +22,7 @@ void modify_zoom(t_env *env, int keycode)
 	draw_map(env);
 }
 
-void moving_map(t_env *env, int keycode)
+void	moving_map(t_env *env, int keycode)
 {
 	mlx_clear_window(env->mlx, env->win);
 	if (keycode == 123)
@@ -36,7 +36,7 @@ void moving_map(t_env *env, int keycode)
 	draw_map(env);
 }
 
-void changing_depth(t_env *env, int keycode)
+void	changing_depth(t_env *env, int keycode)
 {
 	mlx_clear_window(env->mlx, env->win);
 	if (keycode == 86)
