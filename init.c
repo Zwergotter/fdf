@@ -28,27 +28,6 @@ int		map_length(int fd)
 	return (i);
 }
 
-void	max_positions(t_env *env)
-{
-	int x;
-	int y;
-
-	y = -1;
-	while (env->array_pos[++y])
-	{
-		x = -1;
-		while (env->array_pos[y][++x] != '\0')
-		{
-			if (abs(x) > env->max_x)
-				env->max_x = abs(x);
-			if (abs(y - (ft_atoi(env->array_pos[y][x])) > env->max_y))
-				env->max_y = abs(y - (ft_atoi(env->array_pos[y][x])));
-			if (y - (ft_atoi(env->array_pos[y][x])) < env->max_y)
-				env->min_y = y - (ft_atoi(env->array_pos[y][x]));
-		}
-	}
-}
-
 void	init_env(t_env *env, char *map)
 {
 	int		fd;
@@ -57,21 +36,23 @@ void	init_env(t_env *env, char *map)
 	error = ARGUMENT;
 	if ((fd = open(map, O_RDONLY)) < 0)
 		error_displayed(error);
-	env->max_x = 0;
-	env->min_y = 0;
-	env->max_y = 0;
-	env->win_x = 1280;
-	env->win_y = 1024;
-	env->mlx = mlx_init();
-	env->win = mlx_new_window(env->mlx, env->win_x, env->win_y, FDF_NAME_WIN);
-	env->len = map_length(fd);
-	env->zoom = 3;
-	env->mv_x = 50;
-	env->mv_y = 50;
-	env->rot_x = 270;
-	env->rot_y = 190;
-	env->depth = 0.05;
+    env->len = map_length(fd);
+	env->win_x = (env->len * 50 > 1280) ? 1280 : env->len * 50;
+	env->win_y = (env->len * 25 > 1024) ? 1024 : env->len * 25;
+    if ( env->len * 50 < 1280 && env->len * 25 < 1024)
+        {
+            env->win_x = (env->len * 50 < 640) ? 640 : env->len * 50;
+            env->win_y = (env->len * 25 < 480) ? 480 : env->len * 25;
+        }
+    env->zoom = env->win_x / (env->len * 1.75);
+	env->mv_x = env->win_x / 10;
+	env->mv_y = env->win_y / 3;
+	env->rot_x = 250;
+	env->rot_y = 150;
+	env->depth = env->zoom / 50;
 	env->key = 0;
+    env->mlx = mlx_init();
+    env->win = mlx_new_window(env->mlx, env->win_x, env->win_y, FDF_NAME_WIN);
 	close(fd);
 }
 
@@ -85,7 +66,6 @@ void	init_array(char *file, t_env *env)
 	if (!(env->array_pos = read_file(env->array_pos, fd)))
 		error_displayed(error);
 	close(fd);
-	max_positions(env);
 }
 
 void	init_everything(t_env *env, char *map)
