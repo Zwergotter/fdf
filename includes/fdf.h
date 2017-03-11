@@ -42,13 +42,13 @@
 
 # define FDF_ZOOM 0.5
 # define FDF_Z_MINI 1
-# define FDF_Z_MAX 5
+# define FDF_Z_MAX 15
 
 # define FDF_DEPTH 0.05
 # define FDF_D_MINI -1
 # define FDF_D_MAX 1
 
-# define FDF_ROT 5
+# define FDF_ROT 10
 # define FDF_R_MINI 0
 # define FDF_R_MAX 360
 
