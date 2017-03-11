@@ -25,7 +25,7 @@ int		earth(int color1, int color2)
 	if (color1 < 30 && color2 < 30)
 		return (0x506600);
 	if (color1 < 50 && color2 < 50)
-		return (0x887E0);
+		return (0x887E00);
 	if (color1 < 80 && color2 < 80)
 		return (0x986E40);
 	if (color1 < 150 && color2 < 150)
