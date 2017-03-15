@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 17:27:21 by edeveze           #+#    #+#             */
-/*   Updated: 2017/03/10 18:11:07 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/03/15 19:19:44 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ typedef	struct		s_env
 {
 	void			*mlx;
 	void			*win;
+	void			*img;
+	char			*p_img;
+	int				bpp;
+	int				s_line;
+	int				ed;
 	int				len;
 	int				max_x;
 	int				min_y;

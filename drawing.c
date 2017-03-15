@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 00:07:52 by edeveze           #+#    #+#             */
-/*   Updated: 2017/03/10 17:59:28 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/03/15 19:23:50 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	put_pixel(int x, int y, int color, t_env *env)
+{
+	if (x < 0 || y < 0)
+		return ;
+	if(x > env->win_x || y > env->win_y)
+		return ;
+	env->p_img = mlx_get_data_addr(env->img, &(env->bpp), &(env->s_line),
+	&(env->ed));
+	((int *)env->p_img)[x + y * env->s_line / 4] = color;
+}
 
 void	draw(double *one, double *two, t_env *env, int z, int z_bis)
 {
@@ -19,14 +30,14 @@ void	draw(double *one, double *two, t_env *env, int z, int z_bis)
 	double b;
 
 	if (one[0] == two[0] && one[1] == two[1])
-		mlx_pixel_put(env->mlx, env->win, one[0], one[1], color(env, z, z_bis));
+		put_pixel(one[0], one[1], color(env, z, z_bis), env);
 	else if (fabs(one[1] - two[1]) <= fabs(one[0] - two[0]))
 	{
 		a = ((one[1] - two[1]) / (one[0] - two[0]));
 		b = ((one[0] * two[1] - one[1] * two[0]) / (one[0] - two[0]));
 		begin = (one[0] < two[0] ? one[0] : two[0]) - 1;
 		while (++begin <= (one[0] < two[0] ? two[0] : one[0]))
-			mlx_pixel_put(env->mlx, env->win, begin, (a * begin + b), color(env, z, z_bis));
+			put_pixel(begin, (a * begin + b), color(env, z, z_bis), env);
 	}
 	else
 	{
@@ -34,7 +45,7 @@ void	draw(double *one, double *two, t_env *env, int z, int z_bis)
 		b = ((one[0] * two[1] - one[1] * two[0]));
 		begin = (one[1] < two[1] ? one[1] : two[1]) - 1;
 		while (++begin <= (one[1] < two[1] ? two[1] : one[1]))
-			mlx_pixel_put(env->mlx, env->win, ((begin * (one[0] - two[0]) - b) / a), begin, color(env, z, z_bis));
+			put_pixel(((begin * (one[0] - two[0]) - b) / a), begin, color(env, z, z_bis), env);
 	}
 }
 
@@ -94,5 +105,6 @@ int		draw_map(t_env *env)
 	two[0] = 0;
 	two[1] = 0;
 	check_before_draw(env, one, two);
+	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	return (1);
 }

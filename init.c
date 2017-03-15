@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 13:27:01 by edeveze           #+#    #+#             */
-/*   Updated: 2017/03/10 18:17:23 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/03/15 19:22:09 by cosi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ void	init_env(t_env *env, char *map)
 	env->rot_y = 150;
 	env->depth = env->zoom / 50;
 	env->key = 0;
-    env->mlx = mlx_init();
-    env->win = mlx_new_window(env->mlx, env->win_x, env->win_y, FDF_NAME_WIN);
 	close(fd);
 }
 
@@ -74,6 +72,10 @@ void	init_everything(t_env *env, char *map)
 
 	error = MALLOC;
 	init_env(env, map);
+	env->mlx = mlx_init();
+    env->win = mlx_new_window(env->mlx, env->win_x, env->win_y, FDF_NAME_WIN);
+    env->img = mlx_new_image(env->mlx, env->win_x * 1.5, env->win_y * 1.5);
+    env->p_img = mlx_get_data_addr(env->img, &env->bpp, &(env->s_line), &(env->ed));
 	if (!(env->array_pos = malloc(sizeof(char **) * env->len + 1)))
 		error_displayed(error);
 	env->array_pos[env->len] = NULL;
