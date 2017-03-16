@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keycodes.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 14:17:18 by edeveze           #+#    #+#             */
-/*   Updated: 2017/03/15 19:18:24 by cosi             ###   ########.fr       */
+/*   Updated: 2017/03/16 16:57:42 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ int	key_pressed(int key, t_env *env)
 	}
 	if (key == 53)
 		exit(0);
-	printf("Code of key pressed is %d\n", key);
 	return (1);
 }
