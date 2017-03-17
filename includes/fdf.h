@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 17:27:21 by edeveze           #+#    #+#             */
-/*   Updated: 2017/03/16 16:55:31 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/03/17 17:20:25 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ typedef	struct		s_env
 
 typedef	struct		s_coord
 {
-	double 			one[2];
-	double 			two[2];
-	int 			x;
-	int 			y;
-	int 			z[2]; 
+	double			one[2];
+	double			two[2];
+	int				x;
+	int				y;
+	int				z[2];
 }					t_coord;
 
 typedef	enum		e_error
@@ -96,6 +96,7 @@ typedef	enum		e_error
 void				init_everything(t_env *env, char *map);
 char				***read_file(char ***map, int fd);
 int					draw_map(t_env *env);
+void				check_before_draw(t_env *env, t_coord *coord);
 void				error_displayed(t_error error);
 
 int					key_pressed(int keycode, t_env *env);

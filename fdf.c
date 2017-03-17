@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cosi <cosi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 17:29:35 by edeveze           #+#    #+#             */
-/*   Updated: 2017/03/15 19:11:55 by cosi             ###   ########.fr       */
+/*   Updated: 2017/03/17 17:11:17 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int		draw_map(t_env *env)
+{
+	t_coord	*coord;
+
+	if (!(coord = (t_coord *)malloc(sizeof(t_coord))))
+		error_displayed(MALLOC);
+	coord->one[0] = 0;
+	coord->one[1] = 0;
+	coord->two[0] = 0;
+	coord->two[1] = 0;
+	check_before_draw(env, coord);
+	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
+	return (1);
+}
 
 void	loop(t_env *env)
 {

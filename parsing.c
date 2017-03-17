@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 19:08:40 by edeveze           #+#    #+#             */
-/*   Updated: 2017/03/10 18:22:27 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/03/17 17:16:36 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int		check_parsing(char **map)
 
 char	***read_file(char ***map, int fd)
 {
-	char	*line = NULL;
-	char	**temp = NULL;
+	char	*line;
+	char	**temp;
 	int		i;
 	int		split_len;
 

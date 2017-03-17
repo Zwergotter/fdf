@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 14:17:18 by edeveze           #+#    #+#             */
-/*   Updated: 2017/03/16 16:57:42 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/03/17 17:13:26 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	key_pressed(int key, t_env *env)
 		mlx_clear_window(env->mlx, env->win);
 		mlx_destroy_image(env->mlx, env->img);
 		env->img = mlx_new_image(env->mlx, env->win_x * 1.5, env->win_y * 1.5);
-    	env->p_img = mlx_get_data_addr(env->img, &env->bpp, &(env->s_line), &(env->ed));
+		env->p_img = mlx_get_data_addr(env->img, &env->bpp, &(env->s_line),
+				&(env->ed));
 		draw_map(env);
 	}
 	if (key == 53)

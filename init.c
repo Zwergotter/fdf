@@ -6,7 +6,7 @@
 /*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 16:56:46 by edeveze           #+#    #+#             */
-/*   Updated: 2017/03/16 16:57:20 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/03/17 17:12:55 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ void	init_env(t_env *env, char *map)
 	error = ARGUMENT;
 	if ((fd = open(map, O_RDONLY)) < 0)
 		error_displayed(error);
-    env->len = map_length(fd);
+	env->len = map_length(fd);
 	env->win_x = (env->len * 50 > 1280) ? 1280 : env->len * 50;
 	env->win_y = (env->len * 25 > 1024) ? 1024 : env->len * 25;
-    if ( env->len * 50 < 1280 && env->len * 25 < 1024)
-        {
-            env->win_x = (env->len * 50 < 640) ? 640 : env->len * 50;
-            env->win_y = (env->len * 25 < 480) ? 480 : env->len * 25;
-        }
-    env->zoom = env->win_x / (env->len * 1.75);
+	if (env->len * 50 < 1280 && env->len * 25 < 1024)
+	{
+		env->win_x = (env->len * 50 < 640) ? 640 : env->len * 50;
+		env->win_y = (env->len * 25 < 480) ? 480 : env->len * 25;
+	}
+	env->zoom = env->win_x / (env->len * 1.75);
 	env->mv_x = env->win_x / 10;
 	env->mv_y = env->win_y / 3;
 	env->rot_x = 250;
@@ -73,9 +73,10 @@ void	init_everything(t_env *env, char *map)
 	error = MALLOC;
 	init_env(env, map);
 	env->mlx = mlx_init();
-    env->win = mlx_new_window(env->mlx, env->win_x, env->win_y, FDF_NAME_WIN);
-    env->img = mlx_new_image(env->mlx, env->win_x * 1.5, env->win_y * 1.5);
-    env->p_img = mlx_get_data_addr(env->img, &env->bpp, &(env->s_line), &(env->ed));
+	env->win = mlx_new_window(env->mlx, env->win_x, env->win_y, FDF_NAME_WIN);
+	env->img = mlx_new_image(env->mlx, env->win_x * 1.5, env->win_y * 1.5);
+	env->p_img = mlx_get_data_addr(env->img, &env->bpp, &(env->s_line),
+			&(env->ed));
 	if (!(env->array_pos = malloc(sizeof(char **) * env->len + 1)))
 		error_displayed(error);
 	env->array_pos[env->len] = NULL;
