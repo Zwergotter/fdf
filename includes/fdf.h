@@ -79,6 +79,15 @@ typedef	struct		s_env
 	char			***array_pos;
 }					t_env;
 
+typedef	struct		s_coord
+{
+	double 			one[2];
+	double 			two[2];
+	int 			x;
+	int 			y;
+	int 			z[2]; 
+}					t_coord;
+
 typedef	enum		e_error
 {
 	ARGUMENT, MALLOC, OPEN, USAGE
