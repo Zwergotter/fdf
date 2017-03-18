@@ -12,6 +12,11 @@
 
 #include "fdf.h"
 
+/*
+** Reacts to some keys when they're pressed and reacts by calling a function
+** in modifications.c file or just exit when esc is pressed for an example.
+*/
+
 int	key_pressed(int key, t_env *env)
 {
 	if (key == 84 || key == 91 || key == 92 || key == 89)
@@ -27,11 +32,7 @@ int	key_pressed(int key, t_env *env)
 	if (key == 18 || key == 29)
 	{
 		env->key = key;
-		mlx_clear_window(env->mlx, env->win);
-		mlx_destroy_image(env->mlx, env->img);
-		env->img = mlx_new_image(env->mlx, env->win_x * 1.5, env->win_y * 1.5);
-		env->p_img = mlx_get_data_addr(env->img, &env->bpp, &(env->s_line),
-				&(env->ed));
+		new_image(env);
 		draw_map(env);
 	}
 	if (key == 53)

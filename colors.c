@@ -39,11 +39,11 @@ int		earth(int color1, int color2)
 int		technicolor(int color1, int color2)
 {
 	if (color1 < -20 && color2 < -20)
-		return (0xECB7EE);
+		return (0xeab0ee);
 	if (color1 <= 0 && color2 <= 0)
-		return (0xd1b7ee);
+		return (0xc992fd);
 	if (color1 < 10 && color2 < 10)
-		return (0xc9aeff);
+		return (0xccfabff);
 	if (color1 < 20 && color2 < 20)
 		return (0x7466ff);
 	if (color1 < 30 && color2 < 30)

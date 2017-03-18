@@ -6,7 +6,7 @@
 /*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 16:56:46 by edeveze           #+#    #+#             */
-/*   Updated: 2017/03/17 17:12:55 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/03/18 01:15:39 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int		map_length(int fd)
 	return (i);
 }
 
+/*
+** Set all environment's variables.
+*/
+
 void	init_env(t_env *env, char *map)
 {
 	int		fd;
@@ -37,22 +41,28 @@ void	init_env(t_env *env, char *map)
 	if ((fd = open(map, O_RDONLY)) < 0)
 		error_displayed(error);
 	env->len = map_length(fd);
-	env->win_x = (env->len * 50 > 1280) ? 1280 : env->len * 50;
-	env->win_y = (env->len * 25 > 1024) ? 1024 : env->len * 25;
-	if (env->len * 50 < 1280 && env->len * 25 < 1024)
+	env->win_x = (env->len * 80 > 1280) ? 1280 : env->len * 80;
+	env->win_y = (env->len * 30 > 1024) ? 1024 : env->len * 30;
+	if (env->len * 80 < 1280 && env->len * 30 < 1024)
 	{
-		env->win_x = (env->len * 50 < 640) ? 640 : env->len * 50;
-		env->win_y = (env->len * 25 < 480) ? 480 : env->len * 25;
+		env->win_x = (env->len * 80 < 640) ? 640 : env->len * 80;
+		env->win_y = (env->len * 30 < 480) ? 480 : env->len * 30;
 	}
-	env->zoom = env->win_x / (env->len * 1.75);
+	env->zoom = env->win_x / 10 < env->len ? env->win_x / (env->len * 1.75) :
+		env->win_x / (env->len * 3.5);
 	env->mv_x = env->win_x / 10;
 	env->mv_y = env->win_y / 3;
 	env->rot_x = 250;
 	env->rot_y = 150;
-	env->depth = env->zoom / 50;
+	env->depth = (env->len * 80 > env->win_x) ? env->zoom / env->len :
+		env->len / env->zoom;
 	env->key = 0;
 	close(fd);
 }
+
+/*
+** Call read_file from file parsing.c in order to acces to all coordinates.
+*/
 
 void	init_array(char *file, t_env *env)
 {
@@ -65,6 +75,12 @@ void	init_array(char *file, t_env *env)
 		error_displayed(error);
 	close(fd);
 }
+
+/*
+** Takes as argument env struct and file that contains map.
+** Initializes first datas in env.
+** Then put all map's data in an array that will contains all coordinates.
+*/
 
 void	init_everything(t_env *env, char *map)
 {

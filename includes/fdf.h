@@ -44,7 +44,7 @@
 # define FDF_Z_MINI 1
 # define FDF_Z_MAX 15
 
-# define FDF_DEPTH 0.05
+# define FDF_DEPTH 0.01
 # define FDF_D_MINI -1
 # define FDF_D_MAX 1
 
@@ -63,20 +63,17 @@ typedef	struct		s_env
 	int				bpp;
 	int				s_line;
 	int				ed;
+	char			***array_pos;
 	int				len;
-	int				max_x;
-	int				min_y;
-	int				max_y;
 	int				win_x;
 	int				win_y;
 	double			zoom;
+	double			depth;
 	int				mv_x;
 	int				mv_y;
 	int				rot_x;
 	int				rot_y;
-	double			depth;
 	int				key;
-	char			***array_pos;
 }					t_env;
 
 typedef	struct		s_coord
@@ -99,6 +96,7 @@ int					draw_map(t_env *env);
 void				check_before_draw(t_env *env, t_coord *coord);
 void				error_displayed(t_error error);
 
+void				new_image(t_env *env);
 int					key_pressed(int keycode, t_env *env);
 
 int					color(t_env *env, int color1, int color2);

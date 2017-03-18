@@ -23,6 +23,12 @@ void		put_pixel(int x, int y, int color, t_env *env)
 	((int *)env->p_img)[x + y * env->s_line / 4] = color;
 }
 
+/*
+** Draws all pixels between the two points by checking which absolute value
+** of point is higher.
+** Calls put_pixel for each of them.
+*/
+
 void		draw(double *one, double *two, t_env *env, int *z)
 {
 	double	begin;
@@ -50,6 +56,12 @@ void		draw(double *one, double *two, t_env *env, int *z)
 	}
 }
 
+/*
+** Applies height, depthm zoom and moves to both points, to their x[0] and y[1]
+** coordinates.
+** Then calls draw function.
+*/
+
 void		draw_line(t_coord *coord, double *points, t_env *env)
 {
 	double	one[2];
@@ -65,6 +77,14 @@ void		draw_line(t_coord *coord, double *points, t_env *env)
 	two[1] = ((two[1] - (coord->z[1] * env->depth)) * env->zoom) + env->mv_y;
 	draw(one, two, env, coord->z);
 }
+
+/*
+** Set coordinates for second point either it exists on a column(1) or on a
+** line(2).
+** Applies rotations.
+** Also sets values of height of first point and second point in coord->z.
+** Calls draw_line with these variables as arguments.
+*/
 
 void		get_coord(t_env *env, t_coord *coord, int i)
 {
@@ -86,6 +106,12 @@ void		get_coord(t_env *env, t_coord *coord, int i)
 	}
 	draw_line(coord, points, env);
 }
+
+/*
+** Function called by draw_map in file fdf.c. It checks if a coordinate exists
+** before calling get_coord.
+** Coordinates one are saved in order to keep these values.
+*/
 
 void		check_before_draw(t_env *env, t_coord *coord)
 {
