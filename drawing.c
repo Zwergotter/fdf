@@ -57,7 +57,7 @@ void		draw(double *one, double *two, t_env *env, int *z)
 }
 
 /*
-** Applies height, depthm zoom and moves to both points, to their x[0] and y[1]
+** Applies height, depth zoom and moves to both points, to their x[0] and y[1]
 ** coordinates.
 ** Then calls draw function.
 */
