@@ -52,11 +52,13 @@ void	init_env(t_env *env, char *map)
 		env->win_x / (env->len * 3.5);
 	env->mv_x = env->win_x / 10;
 	env->mv_y = env->win_y / 3;
-	env->rot_x = 250;
-	env->rot_y = 150;
+	env->rot_x = 240;
+	env->rot_y = 120;
 	env->depth = (env->len * 80 > env->win_x) ? env->zoom / env->len :
 		env->len / env->zoom;
 	env->key = 0;
+	env->coord_x = 0;
+	env->coord_y = 0;
 	close(fd);
 }
 
