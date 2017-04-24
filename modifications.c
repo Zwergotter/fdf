@@ -25,7 +25,7 @@ void	new_image(t_env *env)
 ** All next functions will firstly calls new_image in order to clear window,
 ** destroy image and then set a new one. Like this we will be able to draw a
 ** cleaned image.
-** Then it does the modification it supposes to do depends on which key is 
+** Then it does the modification it supposes to do depends on which key is
 ** presed and finally calls draw_map in fdf.c file with the new value.
 */
 

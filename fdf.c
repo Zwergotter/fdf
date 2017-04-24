@@ -12,7 +12,6 @@
 
 #include "fdf.h"
 
-
 void	printcontrol(t_env *env)
 {
 	mlx_string_put(env->mlx, env->win, 20, 20, 0xf2f2f2,
@@ -20,11 +19,13 @@ void	printcontrol(t_env *env)
 	mlx_string_put(env->mlx, env->win, 20, 40, 0xf2f2f2,
 		"TRANSLATION: ARROWS");
 	mlx_string_put(env->mlx, env->win, 20, 60, 0xf2f2f2,
-		"EXIT: ESC");
-	mlx_string_put(env->mlx, env->win, 20, 80, 0xf2f2f2,
 		"DEEPNESS : (PAV NUM) 7 / 9");
+	mlx_string_put(env->mlx, env->win, 20, 80, 0xf2f2f2,
+		"ZOOM : (PAV NUM) - / +");
 	mlx_string_put(env->mlx, env->win, 20, 100, 0xf2f2f2,
 		"COLORS : 0 / 1");
+	mlx_string_put(env->mlx, env->win, 20, 120, 0xf2f2f2,
+		"EXIT: ESC");
 }
 
 /*
@@ -51,28 +52,6 @@ int		draw_map(t_env *env)
 	return (1);
 }
 
-// int 	mouse(int mouse, int x, int y, t_env *env)
-// {
-// 	new_image(env);
-// 	if (mouse == 1 || mouse == 2)
-// 	{
-// 		env->coord_x = x / env->zoom;
-// 		env->coord_y = y / env->zoom;
-// 	}
-// 	if (mouse == 5 && env->zoom < FDF_Z_MAX)
-// 		{
-// 			env->zoom += FDF_ZOOM;
-// 			env->coord_x -= x / env->zoom;
-// 			env->coord_y -= y / env->zoom;
-// 			printf("value of env->mv_x is %d - value of env->mv_y is %d\n", env->mv_x, env->mv_y);
-// 		}
-// 	if (mouse == 4 && env->zoom > FDF_Z_MINI)
-// 		env->zoom -= FDF_ZOOM;
-// 	draw_map(env);
-// 	printf("value of mouse is %d - value of x is %d - value of y is %d\n", mouse, x, y);
-// 	return (1);
-// }
-
 /*
 ** Calls key_hook to verify if one key was pressed and then calls function
 ** key_pressed in keycodes.c file.
@@ -82,7 +61,6 @@ int		draw_map(t_env *env)
 
 void	loop(t_env *env)
 {
-	// mlx_mouse_hook(env->win, mouse, env);
 	mlx_key_hook(env->win, key_pressed, env);
 	mlx_expose_hook(env->win, draw_map, env);
 	mlx_loop(env->mlx);

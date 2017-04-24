@@ -90,6 +90,6 @@ char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_strlen(const char *str);
-int 				get_next_line(const int fd, char **line);
+int					get_next_line(const int fd, char **line);
 
 #endif

@@ -50,15 +50,13 @@ void	init_env(t_env *env, char *map)
 	}
 	env->zoom = env->win_x / 10 < env->len ? env->win_x / (env->len * 1.75) :
 		env->win_x / (env->len * 3.5);
-	env->mv_x = env->win_x / 10;
-	env->mv_y = env->win_y / 3;
+	env->mv_x = 0;
+	env->mv_y = env->win_y / 2;
 	env->rot_x = 240;
 	env->rot_y = 120;
 	env->depth = (env->len * 80 > env->win_x) ? env->zoom / env->len :
 		env->len / env->zoom;
 	env->key = 0;
-	env->coord_x = 0;
-	env->coord_y = 0;
 	close(fd);
 }
 
@@ -90,6 +88,8 @@ void	init_everything(t_env *env, char *map)
 
 	error = MALLOC;
 	init_env(env, map);
+	env->coord_x = 0;
+	env->coord_y = 0;
 	env->mlx = mlx_init();
 	env->win = mlx_new_window(env->mlx, env->win_x, env->win_y, FDF_NAME_WIN);
 	env->img = mlx_new_image(env->mlx, env->win_x * 1.5, env->win_y * 1.5);
