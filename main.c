@@ -12,22 +12,6 @@
 
 #include "fdf.h"
 
-void	printcontrol(t_env *env)
-{
-	mlx_string_put(env->mlx, env->win, 20, 20, 0xf2f2f2,
-		"ROTATION: (PAV NUM) 4 / 6 / 8 / 2");
-	mlx_string_put(env->mlx, env->win, 20, 40, 0xf2f2f2,
-		"TRANSLATION: ARROWS");
-	mlx_string_put(env->mlx, env->win, 20, 60, 0xf2f2f2,
-		"DEEPNESS : (PAV NUM) 7 / 9");
-	mlx_string_put(env->mlx, env->win, 20, 80, 0xf2f2f2,
-		"ZOOM : (PAV NUM) - / +");
-	mlx_string_put(env->mlx, env->win, 20, 100, 0xf2f2f2,
-		"COLORS : 0 / 1");
-	mlx_string_put(env->mlx, env->win, 20, 120, 0xf2f2f2,
-		"EXIT: ESC");
-}
-
 /*
 ** Sets coordinates we will need in order to draw map to zero.
 ** Calls function check_before_draw in file drawing.c.
@@ -55,7 +39,7 @@ int		draw_map(t_env *env)
 /*
 ** Calls key_hook to verify if one key was pressed and then calls function
 ** key_pressed in keycodes.c file.
-** Then calls expose hook, calling itself draw_map;
+** Then calls expose hook, calling itself draw_map.
 ** Finally mlx_loop is the last function which will wait for an event.
 */
 

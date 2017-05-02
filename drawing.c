@@ -12,6 +12,10 @@
 
 #include "fdf.h"
 
+/*
+** Puts the pixel in the image.
+*/
+
 void		put_pixel(int x, int y, int color, t_env *env)
 {
 	if (x < 0 || y < 0)
@@ -57,8 +61,8 @@ void		draw(double *one, double *two, t_env *env, int *z)
 }
 
 /*
-** Applies height, depth zoom and moves to both points, to their x[0] and y[1]
-** coordinates.
+** Applies height, depth zoom and moves to both points, to their x([0]) and
+** y([1]) coordinates.
 ** Then calls draw function.
 */
 

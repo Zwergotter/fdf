@@ -42,11 +42,11 @@
 
 # define FDF_ZOOM 0.5
 # define FDF_Z_MINI 1
-# define FDF_Z_MAX 15
+# define FDF_Z_MAX 30
 
 # define FDF_DEPTH 0.01
-# define FDF_D_MINI -1
-# define FDF_D_MAX 1
+# define FDF_D_MINI -0.5
+# define FDF_D_MAX 0.5
 
 # define FDF_ROT 10
 # define FDF_R_MINI 0
@@ -94,11 +94,15 @@ typedef	enum		e_error
 
 void				init_everything(t_env *env, char *map);
 char				***read_file(char ***map, int fd);
+void				depth(t_env *env);
+
 int					draw_map(t_env *env);
 void				check_before_draw(t_env *env, t_coord *coord);
+
+void				printcontrol(t_env *env);
+
 void				error_displayed(t_error error);
 
-void				new_image(t_env *env);
 int					key_pressed(int keycode, t_env *env);
 
 int					color(t_env *env, int color1, int color2);

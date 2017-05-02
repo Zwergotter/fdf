@@ -17,7 +17,7 @@ NAME = fdf
 INC = -I includes -I libft/includes -I minilibx/
 
 # Files
-SRC = fdf.c\
+SRC = main.c\
 	  parsing.c\
 	  drawing.c\
 	  init.c\
@@ -25,6 +25,7 @@ SRC = fdf.c\
 	  keycodes.c\
 	  modifications.c\
 	  colors.c\
+	  controls.c\
 
 # Objects
 OBJ = $(SRC:.c=.o)

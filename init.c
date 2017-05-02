@@ -41,27 +41,24 @@ void	init_env(t_env *env, char *map)
 	if ((fd = open(map, O_RDONLY)) < 0)
 		error_displayed(error);
 	env->len = map_length(fd);
-	env->win_x = (env->len * 80 > 1280) ? 1280 : env->len * 80;
-	env->win_y = (env->len * 30 > 1024) ? 1024 : env->len * 30;
-	if (env->len * 80 < 1280 && env->len * 30 < 1024)
-	{
-		env->win_x = (env->len * 80 < 640) ? 640 : env->len * 80;
-		env->win_y = (env->len * 30 < 480) ? 480 : env->len * 30;
-	}
-	env->zoom = env->win_x / 10 < env->len ? env->win_x / (env->len * 1.75) :
-		env->win_x / (env->len * 3.5);
-	env->mv_x = 0;
-	env->mv_y = env->win_y / 2;
+	env->win_x = env->len * 70;
+	env->win_y = env->len * 56;
+	env->win_x = (env->win_x > 1600 ? 1600 : env->win_x);
+	env->win_y = (env->win_y > 1280 ? 1280 : env->win_y);
+	env->zoom = (env->win_x == 1600) ? env->win_x / (env->len * 2) :
+		env->win_y / (env->len * 2);
+	env->mv_x = (env->win_x < 1600) ? 0 : env->win_y / 15;
+	env->mv_y = (env->win_y * 6) / 10;
 	env->rot_x = 240;
 	env->rot_y = 120;
-	env->depth = (env->len * 80 > env->win_x) ? env->zoom / env->len :
-		env->len / env->zoom;
+	env->depth = 0;
 	env->key = 0;
 	close(fd);
 }
 
 /*
-** Call read_file from file parsing.c in order to acces to all coordinates.
+** Calls read_file from file parsing.c in order to acces to all coordinates.
+** Calls also depth in order to have a better image at the end.
 */
 
 void	init_array(char *file, t_env *env)
@@ -73,13 +70,14 @@ void	init_array(char *file, t_env *env)
 	fd = open(file, O_RDONLY);
 	if (!(env->array_pos = read_file(env->array_pos, fd)))
 		error_displayed(error);
+	depth(env);
 	close(fd);
 }
 
 /*
 ** Takes as argument env struct and file that contains map.
 ** Initializes first datas in env.
-** Then put all map's data in an array that will contains all coordinates.
+** Then puts all map's data in an array that will contains all coordinates.
 */
 
 void	init_everything(t_env *env, char *map)

@@ -12,21 +12,9 @@
 
 #include "fdf.h"
 
-void	new_image(t_env *env)
-{
-	mlx_clear_window(env->mlx, env->win);
-	mlx_destroy_image(env->mlx, env->img);
-	env->img = mlx_new_image(env->mlx, env->win_x * 1.5, env->win_y * 1.5);
-	env->p_img = mlx_get_data_addr(env->img, &env->bpp, &(env->s_line),
-			&(env->ed));
-}
-
 /*
-** All next functions will firstly calls new_image in order to clear window,
-** destroy image and then set a new one. Like this we will be able to draw a
-** cleaned image.
-** Then it does the modification it supposes to do depends on which key is
-** presed and finally calls draw_map in fdf.c file with the new value.
+** All next functions will applies the modification it supposes to,
+** depends on which key is pressed and finally calls draw_map in main.c.
 */
 
 void	modify_zoom(t_env *env, int keycode)

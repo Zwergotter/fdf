@@ -12,6 +12,10 @@
 
 #include "fdf.h"
 
+/*
+** Displays message according to the error and then exits.
+*/
+
 void	error_displayed(t_error error)
 {
 	if (error == ARGUMENT)
